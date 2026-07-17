@@ -259,3 +259,7 @@ h2 .accent { color: var(--red); display: block; }
   .booking-form, .address-card { position: static; transform: none; width: 100%; margin-top: 20px; }
   .footer-grid { flex-direction: column; text-align: center; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

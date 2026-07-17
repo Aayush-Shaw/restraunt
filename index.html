@@ -133,8 +133,8 @@
         <iframe src="https://www.google.com/maps?q=Brampton,+ON,+Canada&output=embed" loading="lazy" title="Pind Grill location on Google Maps"></iframe>
         <!-- REPLACE: get a free form ID at formspree.io and swap REPLACE_FORM_ID -->
         <form class="glass booking-form" action="https://formspree.io/f/REPLACE_FORM_ID" method="POST">
-          <input name="name" type="text" placeholder="Your name" autocomplete="name" required>
-          <input name="phone" type="tel" placeholder="Phone number" autocomplete="tel" required>
+          <input name="name" type="text" placeholder="Your name" autocomplete="name" aria-label="Your name" required>
+          <input name="phone" type="tel" placeholder="Phone number" autocomplete="tel" aria-label="Phone number" required>
           <div class="form-row">
             <input name="date" type="date" required aria-label="Date">
             <input name="time" type="time" required aria-label="Time">
@@ -169,6 +169,7 @@
         <a href="#reviews">Reviews</a>
         <a href="#book">Contact</a>
       </nav>
+      <!-- REPLACE: real phone before launch -->
       <p class="footer-meta">Open daily 11:00 – 23:00 · <a href="tel:+19055550123">+1 (905) 555-0123</a></p>
     </div>
     <p class="copyright">© 2026 Pind Grill. All rights reserved.</p>
