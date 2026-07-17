@@ -13,10 +13,14 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  line-height: 1.6;
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 400;
+  line-height: 1.65;
   overflow-x: hidden;
+}
+/* Jost = display & UI voice; Lora carries body copy */
+h1, h2, h3, h4, .logo, .nav-pills a, .btn, .pill, .price, .footer-col h4 {
+  font-family: 'Jost', sans-serif;
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -39,6 +43,7 @@ h2 .accent { color: var(--red); display: block; }
   border: 0;
   border-radius: 999px;
   font: inherit;
+  font-family: 'Jost', sans-serif;
   font-weight: 500;
   cursor: pointer;
   transition: transform .2s ease, filter .2s ease;
@@ -251,7 +256,7 @@ h2 .accent { color: var(--red); display: block; }
 }
 .review { display: flex; flex-direction: column; gap: 14px; }
 .stars { color: var(--gold); letter-spacing: .2em; }
-.review p { font-size: 1.35rem; font-weight: 400; line-height: 1.4; }
+.review p { font-size: 1.3rem; font-weight: 400; font-style: italic; line-height: 1.45; }
 .review-who { display: flex; align-items: center; gap: 12px; margin-top: 4px; }
 .review-who img {
   width: 44px;
