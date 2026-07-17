@@ -137,3 +137,28 @@ h2 .accent { color: var(--red); display: block; }
   .hero-plates { height: 440px; }
   .plate { width: min(240px, 62%); }
 }
+
+/* ===== dishes ===== */
+.dish-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 56px 40px;
+  margin-top: 72px;
+}
+.dish img {
+  border-radius: 50%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  width: min(240px, 80%);
+  margin-bottom: 24px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, .55);
+}
+.dish h3 { font-size: 1.5rem; font-weight: 500; }
+.dish p { color: var(--muted); margin: 8px 0 12px; }
+.price { color: var(--gold); font-weight: 500; font-size: 1.1rem; letter-spacing: .03em; }
+
+@media (max-width: 900px) {
+  .dish-grid { grid-template-columns: 1fr; gap: 48px; }
+  .dish { text-align: center; }
+  .dish img { margin-inline: auto; }
+}
