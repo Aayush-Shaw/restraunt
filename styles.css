@@ -193,3 +193,69 @@ h2 .accent { color: var(--red); display: block; }
   .story-grid { grid-template-columns: 1fr; gap: 40px; }
   .review-grid { grid-template-columns: 1fr; gap: 48px; }
 }
+
+/* ===== booking + map ===== */
+.book { padding-bottom: 0; }
+.map-wrap { position: relative; height: 680px; margin-top: 64px; }
+.map-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(1) invert(.92) contrast(.85);
+}
+.booking-form {
+  position: absolute;
+  top: 50%;
+  left: 6%;
+  transform: translateY(-50%);
+  width: min(360px, 88%);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.booking-form input,
+.booking-form select {
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 12px;
+  padding: 13px 16px;
+  color: var(--text);
+  font: inherit;
+  width: 100%;
+}
+.booking-form input::placeholder { color: var(--muted); }
+.booking-form input:focus, .booking-form select:focus { outline: 2px solid var(--red); outline-offset: 1px; }
+.booking-form select:invalid { color: var(--muted); }
+.booking-form option { background: var(--surface); color: var(--text); }
+.form-row { display: flex; gap: 14px; }
+.form-status { min-height: 1.2em; font-size: .9rem; color: var(--gold); }
+.booking-form input[type="date"]::-webkit-calendar-picker-indicator,
+.booking-form input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(.7); }
+.address-card {
+  position: absolute;
+  top: 18%;
+  right: 8%;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.address-card strong { font-size: 1.1rem; font-weight: 600; }
+.address-card p { color: var(--muted); font-size: .95rem; }
+
+/* ===== footer ===== */
+.footer { padding: 64px 0 24px; border-top: 1px solid rgba(255, 255, 255, .07); }
+.footer-grid { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.footer-nav { display: flex; gap: 28px; }
+.footer-nav a { color: var(--muted); font-size: .95rem; }
+.footer-nav a:hover { color: var(--text); }
+.footer-meta { color: var(--muted); font-size: .95rem; }
+.copyright { text-align: center; color: var(--muted); font-size: .8rem; margin-top: 40px; opacity: .6; }
+
+@media (max-width: 900px) {
+  .map-wrap { height: auto; padding: 24px 24px 40px; background: var(--surface); }
+  .map-wrap iframe { height: 320px; }
+  .booking-form, .address-card { position: static; transform: none; width: 100%; margin-top: 20px; }
+  .footer-grid { flex-direction: column; text-align: center; }
+}

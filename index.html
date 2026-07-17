@@ -122,7 +122,57 @@
         </div>
       </div>
     </section>
+
+    <section class="book" id="book">
+      <div class="container">
+        <h2 data-reveal>Book a <span class="accent">Table</span></h2>
+        <p class="section-sub" data-reveal>Friday and Saturday nights go fast. Leave your details — we'll call to confirm within the hour.</p>
+      </div>
+      <div class="map-wrap" data-reveal>
+        <!-- REPLACE: swap q= with your real address for the correct pin -->
+        <iframe src="https://www.google.com/maps?q=Brampton,+ON,+Canada&output=embed" loading="lazy" title="Pind Grill location on Google Maps"></iframe>
+        <!-- REPLACE: get a free form ID at formspree.io and swap REPLACE_FORM_ID -->
+        <form class="glass booking-form" action="https://formspree.io/f/REPLACE_FORM_ID" method="POST">
+          <input name="name" type="text" placeholder="Your name" autocomplete="name" required>
+          <input name="phone" type="tel" placeholder="Phone number" autocomplete="tel" required>
+          <div class="form-row">
+            <input name="date" type="date" required aria-label="Date">
+            <input name="time" type="time" required aria-label="Time">
+          </div>
+          <select name="guests" required aria-label="Number of guests">
+            <option value="" disabled selected>Guests</option>
+            <option>2</option>
+            <option>4</option>
+            <option>6</option>
+            <option>8+</option>
+          </select>
+          <button class="btn btn-red" type="submit">Book Now</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+        <div class="glass address-card">
+          <strong>Pind Grill</strong>
+          <!-- REPLACE: real address & phone before launch -->
+          <p>123 Main St N, Brampton, ON</p>
+          <p>Open daily 11:00 – 23:00</p>
+          <p><a href="tel:+19055550123">+1 (905) 555-0123</a></p>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <a class="logo" href="#top">PIND<span>GRILL</span></a>
+      <nav class="footer-nav">
+        <a href="#dishes">Menu</a>
+        <a href="#story">Story</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#book">Contact</a>
+      </nav>
+      <p class="footer-meta">Open daily 11:00 – 23:00 · <a href="tel:+19055550123">+1 (905) 555-0123</a></p>
+    </div>
+    <p class="copyright">© 2026 Pind Grill. All rights reserved.</p>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
