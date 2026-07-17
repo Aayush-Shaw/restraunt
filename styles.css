@@ -45,6 +45,7 @@ h2 .accent { color: var(--red); display: block; }
   font: inherit;
   font-family: 'Jost', sans-serif;
   font-weight: 500;
+  white-space: nowrap;
   cursor: pointer;
   transition: transform .2s ease, filter .2s ease;
 }
@@ -101,6 +102,8 @@ h2 .accent { color: var(--red); display: block; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
+  max-width: 1240px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -142,6 +145,8 @@ h2 .accent { color: var(--red); display: block; }
 .hero {
   min-height: 100vh;
   min-height: 100dvh;
+  max-width: 1240px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   align-items: center;
@@ -172,14 +177,52 @@ h2 .accent { color: var(--red); display: block; }
 .plate:nth-child(2) { top: 34%; left: 0; }
 .plate:nth-child(3) { bottom: 0; right: 8%; }
 
-@media (max-width: 900px) {
+/* tablet portrait (iPad Pro): kill the tall-viewport centering gap above the hero */
+@media (min-width: 901px) and (max-width: 1024px) and (orientation: portrait) {
+  .hero { min-height: auto; align-items: start; padding-top: 140px; padding-bottom: 90px; }
+}
+
+/* tighten nav so logo + pills + CTA fit one line on narrow tablets */
+@media (max-width: 860px) {
   .nav { padding: 14px 20px; }
-  .hero { grid-template-columns: 1fr; padding: 130px 24px 60px; }
-  .hero-plates { height: 440px; }
-  .plate { width: min(240px, 62%); }
+  .logo { font-size: 1.1rem; padding: 6px 14px; }
+  .nav-pills a { padding: 7px 13px; font-size: .82rem; }
+  .nav .btn-red { padding: 11px 20px; font-size: .92rem; }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    gap: 48px;
+    padding: 120px 24px 64px;
+  }
+  /* stacked: plates become a clean centered row instead of scattered overlaps */
+  .hero-plates {
+    position: static;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .plate {
+    position: static;
+    width: min(180px, 30%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .plate .pill {
+    position: static;
+    margin-top: 14px;
+    font-size: .75rem;
+    padding: 6px 12px;
+  }
 }
 @media (max-width: 640px) {
   .nav-pills { display: none; }
+  .plate { width: min(150px, 44%); }
 }
 
 /* ===== dishes ===== */
@@ -277,13 +320,17 @@ h2 .accent { color: var(--red); display: block; }
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: 64px;
-  align-items: start;
+  align-items: stretch;
 }
+.book-left { display: flex; flex-direction: column; min-width: 0; }
 .booking-form {
   width: 100%;
+  height: 100%;
+  min-width: 0;
   padding: 32px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 14px;
 }
 .booking-form input,
@@ -305,7 +352,7 @@ h2 .accent { color: var(--red); display: block; }
 .booking-form input[type="date"]::-webkit-calendar-picker-indicator,
 .booking-form input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(.7); }
 .address-card {
-  margin-top: 40px;
+  margin-top: auto;
   padding: 24px 28px;
   display: flex;
   flex-direction: column;
