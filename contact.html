@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pind Grill — Charcoal-Fired Punjabi Kitchen, Brampton</title>
-  <meta name="description" content="Authentic non-veg Punjabi food in Canada. Tandoori chicken, butter chicken, kebabs — straight off the charcoal. Book a table at Pind Grill, Brampton.">
+  <title>Book a Table — Pind Grill, Brampton</title>
+  <meta name="description" content="Book a table at Pind Grill, Brampton. Friday and Saturday nights go fast — leave your details and we'll call to confirm.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -17,59 +17,47 @@
       <a href="menu.html">Menu</a>
       <a href="story.html">Story</a>
       <a href="reviews.html">Reviews</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="active">Contact</a>
     </nav>
     <a class="btn btn-red btn-pulse" href="contact.html">Book a Table</a>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-text">
-        <h1><span class="line-white">PIND</span><span class="line-red">GRILL</span></h1>
-        <p class="tagline">Charcoal-fired Punjabi kitchen. Overnight marinades, slow curries, meat off the open flame — village recipes, now in Canada.</p>
-        <a class="btn btn-red btn-lg btn-pulse" href="contact.html">Book a Table</a>
-      </div>
-      <div class="hero-plates">
-        <figure class="plate" data-depth="1">
-          <img src="images/hero-tandoori.jpg" alt="Charred tandoori chicken on a black plate">
-          <figcaption class="pill"><i></i>Charcoal Tandoor</figcaption>
-        </figure>
-        <figure class="plate" data-depth="2">
-          <img src="images/hero-curry.jpg" alt="Butter chicken in a dark bowl">
-          <figcaption class="pill"><i></i>Slow-Cooked Curries</figcaption>
-        </figure>
-        <figure class="plate" data-depth="3">
-          <img src="images/hero-kebab.jpg" alt="Seekh kebabs fresh off the skewer">
-          <figcaption class="pill"><i></i>Fresh Off the Skewer</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="dishes">
-      <div class="container">
-        <h2 data-reveal>Signature <span class="accent">Fire</span></h2>
-        <p class="section-sub" data-reveal>Three of the dishes people cross the city for. The rest live on the full menu.</p>
-        <div class="dish-grid">
-          <article class="dish" data-reveal>
-            <img src="images/dish-butter-chicken.jpg" alt="Butter chicken in a copper bowl" loading="lazy">
-            <h3>Butter Chicken</h3>
-            <p>Tandoor-charred thigh folded into a slow tomato-butter gravy. The one people cross the city for.</p>
-            <span class="price">$18.99</span>
-          </article>
-          <article class="dish" data-reveal>
-            <img src="images/dish-tandoori-chicken.jpg" alt="Tandoori chicken with charred edges" loading="lazy">
-            <h3>Tandoori Chicken</h3>
-            <p>Yogurt and spice marinade overnight, then blistered over live charcoal. Smoke does the rest.</p>
-            <span class="price">$16.99</span>
-          </article>
-          <article class="dish" data-reveal>
-            <img src="images/dish-seekh-kebab.jpg" alt="Seekh kebabs on skewers" loading="lazy">
-            <h3>Seekh Kebab</h3>
-            <p>Hand-pressed lamb skewers straight off the smoke, with mint chutney that bites back.</p>
-            <span class="price">$14.99</span>
-          </article>
+    <section class="book page-first">
+      <div class="container book-grid">
+        <div>
+          <h2 data-reveal>Book a <span class="accent">Table</span></h2>
+          <p class="section-sub" data-reveal>Friday and Saturday nights go fast. Leave your details — we'll call to confirm within the hour.</p>
+          <div class="glass address-card" data-reveal>
+            <strong>Pind Grill</strong>
+            <!-- REPLACE: real address & phone before launch -->
+            <p>123 Main St N, Brampton, ON</p>
+            <p>Open daily 11:00 – 23:00</p>
+            <p><a href="tel:+19055550123">+1 (905) 555-0123</a></p>
+          </div>
         </div>
-        <p class="dishes-more" data-reveal><a class="btn btn-ghost" href="menu.html">See the Full Menu</a></p>
+        <!-- REPLACE: get a free form ID at formspree.io and swap REPLACE_FORM_ID -->
+        <form class="glass booking-form" action="https://formspree.io/f/REPLACE_FORM_ID" method="POST" data-reveal>
+          <input name="name" type="text" placeholder="Your name" autocomplete="name" aria-label="Your name" required>
+          <input name="phone" type="tel" placeholder="Phone number" autocomplete="tel" aria-label="Phone number" required>
+          <div class="form-row">
+            <input name="date" type="date" required aria-label="Date">
+            <input name="time" type="time" required aria-label="Time">
+          </div>
+          <select name="guests" required aria-label="Number of guests">
+            <option value="" disabled selected>Guests</option>
+            <option>2</option>
+            <option>4</option>
+            <option>6</option>
+            <option>8+</option>
+          </select>
+          <button class="btn btn-red" type="submit">Book Now</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+      <div class="map-wrap" data-reveal>
+        <!-- REPLACE: swap q= with your real address for the correct pin -->
+        <iframe src="https://www.google.com/maps?q=Brampton,+ON,+Canada&output=embed" loading="lazy" title="Pind Grill location on Google Maps"></iframe>
       </div>
     </section>
   </main>
