@@ -4,7 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book a Table — Indian Grill, Edmonton</title>
-  <meta name="description" content="Book a table at Indian Grill, Edmonton. Friday and Saturday nights go fast — leave your details and we'll call to confirm.">
+  <meta name="description" content="Visit Indian Grill in Edmonton, AB — non-vegetarian Punjabi kitchen, open daily 11am–11pm. Call us to reserve a table; online booking coming soon.">
+  <link rel="canonical" href="https://aayush-shaw.github.io/restraunt/contact.html">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Indian Grill">
+  <meta property="og:locale" content="en_CA">
+  <meta property="og:title" content="Book a Table — Indian Grill, Edmonton">
+  <meta property="og:description" content="Visit Indian Grill in Edmonton, AB. Open daily 11am–11pm. Call us to reserve a table; online booking coming soon.">
+  <meta property="og:url" content="https://aayush-shaw.github.io/restraunt/contact.html">
+  <meta property="og:image" content="https://aayush-shaw.github.io/restraunt/images/hero-tandoori.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Book a Table — Indian Grill, Edmonton">
+  <meta name="twitter:description" content="Visit Indian Grill in Edmonton, AB. Open daily 11am–11pm. Call us to reserve a table; online booking coming soon.">
+  <meta name="twitter:image" content="https://aayush-shaw.github.io/restraunt/images/hero-tandoori.jpg">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,18 +40,21 @@
     <section class="book page-first">
       <div class="container book-grid">
         <div class="book-left">
-          <h2 data-reveal>Book a <span class="accent">Table</span></h2>
-          <p class="section-sub" data-reveal>Friday and Saturday nights go fast. Leave your details — we'll call to confirm within the hour.</p>
+          <h1 class="page-head" data-reveal>Book a <span class="accent">Table</span></h1>
+          <p class="section-sub" data-reveal>Friday and Saturday nights go fast. Call us to reserve — online booking is coming soon.</p>
           <div class="glass address-card" data-reveal>
             <strong>Indian Grill</strong>
-            <!-- REPLACE: real address & phone before launch -->
+            <!-- TODO(launch): replace placeholder phone number (+1 780 555-0123 is a fake). Address & hours are real. -->
             <p>10132 104 St NW, Edmonton, AB</p>
             <p>Open daily 11:00 – 23:00</p>
             <p><a href="tel:+17805550123">+1 (780) 555-0123</a></p>
           </div>
         </div>
-        <!-- REPLACE: get a free form ID at formspree.io and swap REPLACE_FORM_ID -->
+        <!-- TODO(launch): booking form is an intentional placeholder — not wired to any backend yet.
+             To activate: get a form ID at formspree.io and replace REPLACE_FORM_ID. Until then the
+             submit handler in script.js shows the "call us" note instead of posting. -->
         <form class="glass booking-form" action="https://formspree.io/f/REPLACE_FORM_ID" method="POST" data-reveal>
+          <p class="form-note">Online booking is coming soon. To reserve now, please <a href="tel:+17805550123">call us</a>.</p>
           <input name="name" type="text" placeholder="Your name" autocomplete="name" aria-label="Your name" required>
           <input name="phone" type="tel" placeholder="Phone number" autocomplete="tel" aria-label="Phone number" required>
           <div class="form-row">
@@ -57,11 +73,60 @@
         </form>
       </div>
       <div class="map-wrap" data-reveal>
-        <!-- REPLACE: swap q= with your real address for the correct pin -->
+        <!-- Map pin is set to the Edmonton address. TODO(launch): confirm exact pin once the storefront is verified on Google. -->
         <iframe src="https://www.google.com/maps?q=10132+104+St+NW,+Edmonton,+AB&output=embed" loading="lazy" title="Indian Grill location on Google Maps"></iframe>
       </div>
     </section>
+
+    <section class="faq" aria-labelledby="faq-head">
+      <div class="container">
+        <h2 id="faq-head" data-reveal>Good to <span class="accent">Know</span></h2>
+        <div class="faq-list" data-reveal>
+          <details>
+            <summary>How do I make a reservation?</summary>
+            <p>Our online booking form is coming soon. For now, call us directly at <a href="tel:+17805550123">+1 (780) 555-0123</a> to reserve a table. We're open daily, 11:00 AM to 11:00 PM.</p>
+          </details>
+          <details>
+            <summary>What kind of food does Indian Grill serve?</summary>
+            <p>We're a non-vegetarian Punjabi (North Indian) restaurant in Edmonton, AB. Everything is charcoal-fired or tandoor-cooked — signature dishes include butter chicken, tandoori chicken, seekh kebab, rara gosht, and biryani.</p>
+          </details>
+          <details>
+            <summary>Can I choose how spicy my dish is?</summary>
+            <p>Every dish on our <a href="menu.html">menu</a> is marked with a spice level, from mild to extra hot. Prefer it milder or hotter? Let us know when you order and the kitchen will adjust where it can.</p>
+          </details>
+          <details>
+            <summary>Do you have allergen information?</summary>
+            <p>Yes. Each dish on the <a href="menu.html">menu</a> is labelled with common allergens — dairy, gluten, nuts, fish, and shellfish. Ask our staff about any specific dietary needs before you order.</p>
+          </details>
+          <details>
+            <summary>What's the price range?</summary>
+            <p>Most mains run about $13 to $23. Starters, breads, rice, and drinks are less. See the full <a href="menu.html">menu</a> for prices.</p>
+          </details>
+          <details>
+            <summary>Where are you located and when are you open?</summary>
+            <p>10132 104 St NW, Edmonton, AB. Open daily, 11:00 AM to 11:00 PM.</p>
+          </details>
+          <!-- TODO(launch): add Parking and Takeout/Delivery Q&A once confirmed, and mirror them into the FAQPage JSON-LD below. -->
+        </div>
+      </div>
+    </section>
   </main>
+
+  <!-- FAQ structured data for search + AI answer engines. Keep in sync with the visible FAQ above. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "How do I make a reservation at Indian Grill?", "acceptedAnswer": { "@type": "Answer", "text": "Our online booking form is coming soon. For now, call us directly at +1 (780) 555-0123 to reserve a table. We're open daily, 11:00 AM to 11:00 PM." } },
+      { "@type": "Question", "name": "What kind of food does Indian Grill serve?", "acceptedAnswer": { "@type": "Answer", "text": "Indian Grill is a non-vegetarian Punjabi (North Indian) restaurant in Edmonton, AB. Everything is charcoal-fired or tandoor-cooked. Signature dishes include butter chicken, tandoori chicken, seekh kebab, rara gosht, and biryani." } },
+      { "@type": "Question", "name": "Can I choose how spicy my dish is?", "acceptedAnswer": { "@type": "Answer", "text": "Every dish on the menu is marked with a spice level from mild to extra hot. Prefer it milder or hotter? Let us know when you order and the kitchen will adjust where it can." } },
+      { "@type": "Question", "name": "Does Indian Grill provide allergen information?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Each dish on the menu is labelled with common allergens: dairy, gluten, nuts, fish, and shellfish. Ask staff about specific dietary needs before ordering." } },
+      { "@type": "Question", "name": "What is the price range at Indian Grill?", "acceptedAnswer": { "@type": "Answer", "text": "Most mains run about $13 to $23. Starters, breads, rice, and drinks are less." } },
+      { "@type": "Question", "name": "Where is Indian Grill located and what are the hours?", "acceptedAnswer": { "@type": "Answer", "text": "Indian Grill is at 10132 104 St NW, Edmonton, AB. Open daily, 11:00 AM to 11:00 PM." } }
+    ]
+  }
+  </script>
 
   <footer class="footer">
     <div class="container footer-grid">
@@ -69,7 +134,7 @@
         <a class="logo" href="index.html">INDIAN<span>GRILL</span></a>
         <p>Charcoal-fired Punjabi kitchen in Edmonton. Village recipes, overnight marinades, meat off the open flame.</p>
         <div class="socials">
-          <!-- REPLACE: real social profile URLs -->
+          <!-- TODO(launch): add real social profile URLs (Instagram/Facebook/X currently point to "#"). -->
           <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zm0 3.4a5.4 5.4 0 1 1 0 10.8 5.4 5.4 0 0 1 0-10.8zm0 2a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8zm5.6-2.9a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6z"/></svg></a>
           <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.6V3.6c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.4H7.8V13h2.7v8h3z"/></svg></a>
           <a href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.8 3h3l-6.6 7.5L22 21h-6.1l-4.8-6.2L5.6 21h-3l7-8L2.4 3h6.3l4.3 5.7L17.8 3zm-1.1 16.2h1.7L7.7 4.7H5.9l10.8 14.5z"/></svg></a>
@@ -84,7 +149,7 @@
       </nav>
       <div class="footer-col">
         <h4>Visit</h4>
-        <!-- REPLACE: real address & phone before launch -->
+        <!-- TODO(launch): replace placeholder phone (+1 780 555-0123 is fake). Address & hours are real. -->
         <p>10132 104 St NW, Edmonton, AB</p>
         <p><a href="tel:+17805550123">+1 (780) 555-0123</a></p>
         <p>Open daily 11:00 – 23:00</p>

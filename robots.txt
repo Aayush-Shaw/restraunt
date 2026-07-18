@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aayush-shaw.github.io/restraunt/sitemap.xml

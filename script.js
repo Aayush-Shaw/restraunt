@@ -37,12 +37,18 @@ if (pills) {
   pills.addEventListener('click', (e) => { if (e.target.tagName === 'A') setOpen(false); });
 }
 
-// booking form → Formspree, inline status (contact page only)
+// booking form (contact + home). TODO(launch): form is a placeholder — when a real
+// Formspree ID replaces REPLACE_FORM_ID, the live-submit branch below activates.
 const form = document.querySelector('.booking-form');
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const status = form.querySelector('.form-status');
+    // Placeholder form: don't POST to a dead endpoint, don't fake success — tell people to call.
+    if (form.action.includes('REPLACE_FORM_ID')) {
+      status.textContent = "Online booking isn't live yet — please call us to reserve.";
+      return;
+    }
     status.textContent = 'Sending…';
     const res = await fetch(form.action, {
       method: 'POST',
@@ -174,6 +180,9 @@ if (filterBar && menuGrid) {
 }
 
 // ===== motion (GSAP) =====
+// Guarded: if the GSAP/ScrollTrigger CDN is blocked or slow, skip all animation.
+// [data-reveal] elements have no opacity set without this, so content stays fully visible.
+if (window.gsap && window.ScrollTrigger) {
 gsap.registerPlugin(ScrollTrigger);
 
 const mm = gsap.matchMedia();
@@ -211,6 +220,7 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
     });
   });
 });
+}
 
 // ===== variable-weight cursor-proximity on headings =====
 // Each letter morphs its 'wght' axis from FROM (rest) → TO (at cursor),

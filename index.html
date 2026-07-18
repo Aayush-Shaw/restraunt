@@ -5,11 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Indian Grill — Charcoal-Fired Punjabi Kitchen, Edmonton</title>
   <meta name="description" content="Authentic non-veg Punjabi food in Canada. Tandoori chicken, butter chicken, kebabs — straight off the charcoal. Book a table at Indian Grill, Edmonton.">
+  <link rel="canonical" href="https://aayush-shaw.github.io/restraunt/">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Indian Grill">
+  <meta property="og:locale" content="en_CA">
+  <meta property="og:title" content="Indian Grill — Charcoal-Fired Punjabi Kitchen, Edmonton">
+  <meta property="og:description" content="Non-vegetarian Punjabi restaurant in Edmonton, AB. Tandoori chicken, butter chicken, kebabs — straight off the charcoal.">
+  <meta property="og:url" content="https://aayush-shaw.github.io/restraunt/">
+  <meta property="og:image" content="https://aayush-shaw.github.io/restraunt/images/hero-tandoori.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Indian Grill — Charcoal-Fired Punjabi Kitchen, Edmonton">
+  <meta name="twitter:description" content="Non-vegetarian Punjabi restaurant in Edmonton, AB. Tandoori chicken, butter chicken, kebabs — straight off the charcoal.">
+  <meta name="twitter:image" content="https://aayush-shaw.github.io/restraunt/images/hero-tandoori.jpg">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100..900&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <!-- Structured data for search + AI answer engines. TODO(launch): replace placeholder telephone; verify geo coordinates. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Indian Grill",
+    "description": "Non-vegetarian Punjabi (North Indian) restaurant in Edmonton, AB. Charcoal-fired tandoori, overnight marinades, and slow curries — village recipes brought to Canada.",
+    "servesCuisine": ["Punjabi", "North Indian", "Indian"],
+    "url": "https://aayush-shaw.github.io/restraunt/",
+    "hasMenu": "https://aayush-shaw.github.io/restraunt/menu.html",
+    "image": "https://aayush-shaw.github.io/restraunt/images/hero-tandoori.jpg",
+    "telephone": "+1-780-555-0123",
+    "priceRange": "$$",
+    "acceptsReservations": "False",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10132 104 St NW",
+      "addressLocality": "Edmonton",
+      "addressRegion": "AB",
+      "postalCode": "T5J 1B9",
+      "addressCountry": "CA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 53.5438,
+      "longitude": -113.4921
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "11:00",
+      "closes": "23:00"
+    }]
+  }
+  </script>
 </head>
 <body>
   <header class="nav">
@@ -113,7 +161,7 @@
             <div class="stars">★★★★★</div>
             <p>"Best butter chicken I've had outside of India. Period."</p>
             <div class="review-who">
-              <!-- REPLACE: stock portraits — swap for real guest photos (with consent) before launch -->
+              <!-- TODO(launch): stock portraits — swap for real guest photos (with consent). -->
               <img src="images/face-1.jpg" alt="" loading="lazy">
               <cite>Sarah M. — Toronto, ON</cite>
             </div>
@@ -142,17 +190,20 @@
       <div class="container book-grid">
         <div class="book-left">
           <h2 data-reveal>Book a <span class="accent">Table</span></h2>
-          <p class="section-sub" data-reveal>Friday and Saturday nights go fast. Leave your details — we'll call to confirm within the hour.</p>
+          <p class="section-sub" data-reveal>Friday and Saturday nights go fast. Call us to reserve — online booking is coming soon.</p>
           <div class="glass address-card" data-reveal>
             <strong>Indian Grill</strong>
-            <!-- REPLACE: real address & phone before launch -->
+            <!-- TODO(launch): replace placeholder phone (+1 780 555-0123 is fake). Address & hours are real. -->
             <p>10132 104 St NW, Edmonton, AB</p>
             <p>Open daily 11:00 – 23:00</p>
             <p><a href="tel:+17805550123">+1 (780) 555-0123</a></p>
           </div>
         </div>
-        <!-- REPLACE: get a free form ID at formspree.io and swap REPLACE_FORM_ID -->
+        <!-- TODO(launch): booking form is an intentional placeholder — not wired to a backend.
+             To activate: get a form ID at formspree.io and replace REPLACE_FORM_ID. Until then the
+             submit handler in script.js shows the "call us" note instead of posting. -->
         <form class="glass booking-form" action="https://formspree.io/f/REPLACE_FORM_ID" method="POST" data-reveal>
+          <p class="form-note">Online booking is coming soon. To reserve now, please <a href="tel:+17805550123">call us</a>.</p>
           <input name="name" type="text" placeholder="Your name" autocomplete="name" aria-label="Your name" required>
           <input name="phone" type="tel" placeholder="Phone number" autocomplete="tel" aria-label="Phone number" required>
           <div class="form-row">
@@ -171,7 +222,7 @@
         </form>
       </div>
       <div class="map-wrap" data-reveal>
-        <!-- REPLACE: swap q= with your real address for the correct pin -->
+        <!-- Map pin is set to the Edmonton address. TODO(launch): confirm exact pin once the storefront is verified on Google. -->
         <iframe src="https://www.google.com/maps?q=10132+104+St+NW,+Edmonton,+AB&output=embed" loading="lazy" title="Indian Grill location on Google Maps"></iframe>
       </div>
     </section>
@@ -183,7 +234,7 @@
         <a class="logo" href="index.html">INDIAN<span>GRILL</span></a>
         <p>Charcoal-fired Punjabi kitchen in Edmonton. Village recipes, overnight marinades, meat off the open flame.</p>
         <div class="socials">
-          <!-- REPLACE: real social profile URLs -->
+          <!-- TODO(launch): add real social profile URLs (Instagram/Facebook/X currently point to "#"). -->
           <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zm0 3.4a5.4 5.4 0 1 1 0 10.8 5.4 5.4 0 0 1 0-10.8zm0 2a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8zm5.6-2.9a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6z"/></svg></a>
           <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.6V3.6c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.4H7.8V13h2.7v8h3z"/></svg></a>
           <a href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.8 3h3l-6.6 7.5L22 21h-6.1l-4.8-6.2L5.6 21h-3l7-8L2.4 3h6.3l4.3 5.7L17.8 3zm-1.1 16.2h1.7L7.7 4.7H5.9l10.8 14.5z"/></svg></a>
@@ -198,7 +249,7 @@
       </nav>
       <div class="footer-col">
         <h4>Visit</h4>
-        <!-- REPLACE: real address & phone before launch -->
+        <!-- TODO(launch): replace placeholder phone (+1 780 555-0123 is fake). Address & hours are real. -->
         <p>10132 104 St NW, Edmonton, AB</p>
         <p><a href="tel:+17805550123">+1 (780) 555-0123</a></p>
         <p>Open daily 11:00 – 23:00</p>
