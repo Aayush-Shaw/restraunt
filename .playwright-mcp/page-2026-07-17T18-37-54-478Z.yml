@@ -1,0 +1,85 @@
+- generic [active] [ref=f2e1]:
+  - banner [ref=f2e2]:
+    - link "PINDGRILL" [ref=f2e3] [cursor=pointer]:
+      - /url: index.html
+    - navigation [ref=f2e4]:
+      - link "Menu" [ref=f2e5] [cursor=pointer]:
+        - /url: menu.html
+      - link "Story" [ref=f2e6] [cursor=pointer]:
+        - /url: story.html
+      - link "Reviews" [ref=f2e7] [cursor=pointer]:
+        - /url: reviews.html
+      - link "Contact" [ref=f2e8] [cursor=pointer]:
+        - /url: contact.html
+    - link "Book a Table" [ref=f2e9] [cursor=pointer]:
+      - /url: contact.html
+  - main [ref=f2e10]:
+    - generic [ref=f2e11]:
+      - generic [ref=f2e12]:
+        - generic [ref=f2e13]:
+          - heading "Book a Table" [level=2] [ref=f2e14]:
+            - text: Book a
+            - generic [ref=f2e15]: Table
+          - paragraph [ref=f2e16]: Friday and Saturday nights go fast. Leave your details — we'll call to confirm within the hour.
+          - generic [ref=f2e17]:
+            - strong [ref=f2e18]: Pind Grill
+            - paragraph [ref=f2e19]: 123 Main St N, Brampton, ON
+            - paragraph [ref=f2e20]: Open daily 11:00 – 23:00
+            - paragraph [ref=f2e21]:
+              - link "+1 (905) 555-0123" [ref=f2e22] [cursor=pointer]:
+                - /url: tel:+19055550123
+        - generic [ref=f2e23]:
+          - textbox "Your name" [ref=f2e24]
+          - textbox "Phone number" [ref=f2e25]
+          - generic [ref=f2e26]:
+            - textbox "Date" [ref=f2e27]
+            - textbox "Time" [ref=f2e28]
+          - combobox "Number of guests" [ref=f2e29]:
+            - option "Guests" [disabled] [selected]
+            - option "2"
+            - option "4"
+            - option "6"
+            - option "8+"
+          - button "Book Now" [ref=f2e30] [cursor=pointer]
+          - status [ref=f2e31]
+      - iframe [ref=f2e33]:
+        - generic [ref=f3e6]:
+          - region "Map" [ref=f3e7]
+          - iframe [ref=f3e48]:
+            
+  - contentinfo [ref=f2e34]:
+    - generic [ref=f2e35]:
+      - generic [ref=f2e36]:
+        - link "PINDGRILL" [ref=f2e37] [cursor=pointer]:
+          - /url: index.html
+        - paragraph [ref=f2e38]: Charcoal-fired Punjabi kitchen in Brampton. Village recipes, overnight marinades, meat off the open flame.
+        - generic [ref=f2e39]:
+          - link "Instagram" [ref=f2e40] [cursor=pointer]:
+            - /url: "#"
+          - link "Facebook" [ref=f2e43] [cursor=pointer]:
+            - /url: "#"
+          - link "X (Twitter)" [ref=f2e46] [cursor=pointer]:
+            - /url: "#"
+      - navigation "Quick links" [ref=f2e49]:
+        - heading "Explore" [level=4] [ref=f2e50]
+        - link "Menu" [ref=f2e51] [cursor=pointer]:
+          - /url: menu.html
+        - link "Story" [ref=f2e52] [cursor=pointer]:
+          - /url: story.html
+        - link "Reviews" [ref=f2e53] [cursor=pointer]:
+          - /url: reviews.html
+        - link "Contact" [ref=f2e54] [cursor=pointer]:
+          - /url: contact.html
+      - generic [ref=f2e55]:
+        - heading "Visit" [level=4] [ref=f2e56]
+        - paragraph [ref=f2e57]: 123 Main St N, Brampton, ON
+        - paragraph [ref=f2e58]:
+          - link "+1 (905) 555-0123" [ref=f2e59] [cursor=pointer]:
+            - /url: tel:+19055550123
+        - paragraph [ref=f2e60]: Open daily 11:00 – 23:00
+      - generic [ref=f2e61]:
+        - heading "Book" [level=4] [ref=f2e62]
+        - paragraph [ref=f2e63]: Friday and Saturday nights go fast.
+        - link "Book a Table" [ref=f2e64] [cursor=pointer]:
+          - /url: contact.html
+    - paragraph [ref=f2e65]: © 2026 Pind Grill. All rights reserved.

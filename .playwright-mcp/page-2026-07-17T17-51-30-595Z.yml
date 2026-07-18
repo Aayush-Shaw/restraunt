@@ -1,0 +1,91 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "PINDGRILL" [ref=e3] [cursor=pointer]:
+      - /url: index.html
+    - navigation [ref=e4]:
+      - link "Menu" [ref=e5] [cursor=pointer]:
+        - /url: menu.html
+      - link "Story" [ref=e6] [cursor=pointer]:
+        - /url: story.html
+      - link "Reviews" [ref=e7] [cursor=pointer]:
+        - /url: reviews.html
+      - link "Contact" [ref=e8] [cursor=pointer]:
+        - /url: contact.html
+    - link "Book a Table" [ref=e9] [cursor=pointer]:
+      - /url: contact.html
+  - main [ref=e10]:
+    - generic [ref=e11]:
+      - generic [ref=e12]:
+        - heading "PIND GRILL" [level=1] [ref=e13]:
+          - generic [ref=e14]: PIND
+          - generic [ref=e15]: GRILL
+        - paragraph [ref=e16]: Charcoal-fired Punjabi kitchen. Overnight marinades, slow curries, meat off the open flame — village recipes, now in Canada.
+        - link "Book a Table" [ref=e17] [cursor=pointer]:
+          - /url: contact.html
+      - generic [ref=e18]:
+        - figure [ref=e19]:
+          - img "Charred tandoori chicken on a black plate" [ref=e20]
+        - figure [ref=e23]:
+          - img "Butter chicken in a dark bowl" [ref=e24]
+        - figure [ref=e27]:
+          - img "Seekh kebabs fresh off the skewer" [ref=e28]
+    - generic [ref=e32]:
+      - heading "Signature Fire" [level=2] [ref=e33]:
+        - text: Signature
+        - generic [ref=e34]: Fire
+      - paragraph [ref=e35]: Three of the dishes people cross the city for. The rest live on the full menu.
+      - generic [ref=e36]:
+        - article [ref=e37]:
+          - img "Butter chicken in a copper bowl" [ref=e38]
+          - heading "Butter Chicken" [level=3] [ref=e39]
+          - paragraph [ref=e40]: Tandoor-charred thigh folded into a slow tomato-butter gravy. The one people cross the city for.
+          - text: $18.99
+        - article [ref=e41]:
+          - img "Tandoori chicken with charred edges" [ref=e42]
+          - heading "Tandoori Chicken" [level=3] [ref=e43]
+          - paragraph [ref=e44]: Yogurt and spice marinade overnight, then blistered over live charcoal. Smoke does the rest.
+          - text: $16.99
+        - article [ref=e45]:
+          - img "Seekh kebabs on skewers" [ref=e46]
+          - heading "Seekh Kebab" [level=3] [ref=e47]
+          - paragraph [ref=e48]: Hand-pressed lamb skewers straight off the smoke, with mint chutney that bites back.
+          - text: $14.99
+      - paragraph [ref=e49]:
+        - link "See the Full Menu" [ref=e50] [cursor=pointer]:
+          - /url: menu.html
+  - contentinfo [ref=e51]:
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - link "PINDGRILL" [ref=e54] [cursor=pointer]:
+          - /url: index.html
+        - paragraph [ref=e55]: Charcoal-fired Punjabi kitchen in Brampton. Village recipes, overnight marinades, meat off the open flame.
+        - generic [ref=e56]:
+          - link "Instagram" [ref=e57] [cursor=pointer]:
+            - /url: "#"
+          - link "Facebook" [ref=e60] [cursor=pointer]:
+            - /url: "#"
+          - link "X (Twitter)" [ref=e63] [cursor=pointer]:
+            - /url: "#"
+      - navigation "Quick links" [ref=e66]:
+        - heading "Explore" [level=4] [ref=e67]
+        - link "Menu" [ref=e68] [cursor=pointer]:
+          - /url: menu.html
+        - link "Story" [ref=e69] [cursor=pointer]:
+          - /url: story.html
+        - link "Reviews" [ref=e70] [cursor=pointer]:
+          - /url: reviews.html
+        - link "Contact" [ref=e71] [cursor=pointer]:
+          - /url: contact.html
+      - generic [ref=e72]:
+        - heading "Visit" [level=4] [ref=e73]
+        - paragraph [ref=e74]: 123 Main St N, Brampton, ON
+        - paragraph [ref=e75]:
+          - link "+1 (905) 555-0123" [ref=e76] [cursor=pointer]:
+            - /url: tel:+19055550123
+        - paragraph [ref=e77]: Open daily 11:00 – 23:00
+      - generic [ref=e78]:
+        - heading "Book" [level=4] [ref=e79]
+        - paragraph [ref=e80]: Friday and Saturday nights go fast.
+        - link "Book a Table" [ref=e81] [cursor=pointer]:
+          - /url: contact.html
+    - paragraph [ref=e82]: © 2026 Pind Grill. All rights reserved.
