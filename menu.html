@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu — Indian Grill, Brampton</title>
+  <title>Menu — Indian Grill, Edmonton</title>
   <meta name="description" content="Six signature non-veg Punjabi dishes off the charcoal — butter chicken, tandoori chicken, Amritsari fish, rara gosht, seekh kebab, chicken tikka.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,45 +27,17 @@
     <section class="dishes page-first">
       <div class="container">
         <h2 data-reveal>Signature <span class="accent">Fire</span></h2>
-        <p class="section-sub" data-reveal>Six dishes off the charcoal we'd put against anyone's. Marinated overnight, cooked over live flame, finished with ghee.</p>
-        <div class="dish-grid">
-          <article class="dish" data-reveal>
-            <img src="images/dish-butter-chicken.jpg" alt="Butter chicken in a copper bowl" loading="lazy">
-            <h3>Butter Chicken</h3>
-            <p>Tandoor-charred thigh folded into a slow tomato-butter gravy. The one people cross the city for.</p>
-            <span class="price">$18.99</span>
-          </article>
-          <article class="dish" data-reveal>
-            <img src="images/dish-tandoori-chicken.jpg" alt="Tandoori chicken with charred edges" loading="lazy">
-            <h3>Tandoori Chicken</h3>
-            <p>Yogurt and spice marinade overnight, then blistered over live charcoal. Smoke does the rest.</p>
-            <span class="price">$16.99</span>
-          </article>
-          <article class="dish" data-reveal>
-            <img src="images/dish-amritsari-fish.jpg" alt="Crispy Amritsari fried fish" loading="lazy">
-            <h3>Amritsari Fish</h3>
-            <p>Ajwain-spiked batter, fried crisp the way the street stalls of Amritsar do it. Lemon. Done.</p>
-            <span class="price">$15.99</span>
-          </article>
-          <article class="dish" data-reveal>
-            <img src="images/dish-rara-gosht.jpg" alt="Rara gosht mutton curry" loading="lazy">
-            <h3>Rara Gosht</h3>
-            <p>Slow mutton curry doubled down with spiced mince. Dark, rich, unapologetic.</p>
-            <span class="price">$21.99</span>
-          </article>
-          <article class="dish" data-reveal>
-            <img src="images/dish-seekh-kebab.jpg" alt="Seekh kebabs on skewers" loading="lazy">
-            <h3>Seekh Kebab</h3>
-            <p>Hand-pressed lamb skewers straight off the smoke, with mint chutney that bites back.</p>
-            <span class="price">$14.99</span>
-          </article>
-          <article class="dish" data-reveal>
-            <img src="images/dish-chicken-tikka.jpg" alt="Charred chicken tikka pieces" loading="lazy">
-            <h3>Chicken Tikka</h3>
-            <p>Boneless smoky bites, charred edges, basted in butter while they rest. They rarely get to rest.</p>
-            <span class="price">$15.99</span>
-          </article>
+        <p class="section-sub" data-reveal>Off the charcoal, marinated overnight, cooked over live flame, finished with ghee. Filter by course to find your table's order.</p>
+        <div class="menu-filters" role="group" aria-label="Filter menu by category" data-reveal>
+          <button type="button" class="filter-pill" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="filter-pill" data-filter="Starters" aria-pressed="false">Starters</button>
+          <button type="button" class="filter-pill" data-filter="Tandoori &amp; Grill" aria-pressed="false">Tandoori &amp; Grill</button>
+          <button type="button" class="filter-pill" data-filter="Curries" aria-pressed="false">Curries</button>
+          <button type="button" class="filter-pill" data-filter="Biryani &amp; Rice" aria-pressed="false">Biryani &amp; Rice</button>
+          <button type="button" class="filter-pill" data-filter="Breads" aria-pressed="false">Breads</button>
+          <button type="button" class="filter-pill" data-filter="Drinks &amp; Dessert" aria-pressed="false">Drinks &amp; Dessert</button>
         </div>
+        <div class="dish-grid" data-menu-grid></div>
       </div>
     </section>
   </main>
@@ -74,7 +46,7 @@
     <div class="container footer-grid">
       <div class="footer-brand">
         <a class="logo" href="index.html">INDIAN<span>GRILL</span></a>
-        <p>Charcoal-fired Punjabi kitchen in Brampton. Village recipes, overnight marinades, meat off the open flame.</p>
+        <p>Charcoal-fired Punjabi kitchen in Edmonton. Village recipes, overnight marinades, meat off the open flame.</p>
         <div class="socials">
           <!-- REPLACE: real social profile URLs -->
           <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zm0 3.4a5.4 5.4 0 1 1 0 10.8 5.4 5.4 0 0 1 0-10.8zm0 2a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8zm5.6-2.9a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6z"/></svg></a>
@@ -93,7 +65,7 @@
         <h4>Visit</h4>
         <!-- REPLACE: real address & phone before launch -->
         <p>10132 104 St NW, Edmonton, AB</p>
-        <p><a href="tel:+19055550123">+1 (905) 555-0123</a></p>
+        <p><a href="tel:+17805550123">+1 (780) 555-0123</a></p>
         <p>Open daily 11:00 – 23:00</p>
       </div>
       <div class="footer-col">

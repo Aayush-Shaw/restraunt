@@ -70,6 +70,109 @@ if (stack && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   }, 4500);
 }
 
+// ===== menu data (single source of truth) =====
+// Existing 6 keep their local photos + copy verbatim. New dishes use verified
+// Unsplash URLs (square-cropped, lazy-loaded) as placeholders until real photos.
+const ux = (id) => `https://images.unsplash.com/photo-${id}?w=600&h=600&fit=crop&q=70`;
+const DISHES = [
+  // Starters
+  { name: 'Amritsari Fish', category: 'Starters', price: '$15.99', img: 'images/dish-amritsari-fish.jpg', spiceLevel: 2, allergens: ['fish', 'gluten'], desc: 'Ajwain-spiked batter, fried crisp the way the street stalls of Amritsar do it. Lemon. Done.' },
+  { name: 'Chicken Pakora', category: 'Starters', price: '$12.99', img: ux('1610057099431-d73a1c9d2f2f'), spiceLevel: 1, allergens: [], desc: 'Chickpea batter, carom seed, fried gold. Gone before they hit the table.' },
+  { name: 'Tandoori Wings', category: 'Starters', price: '$13.99', img: ux('1685798830572-f07ff7635774'), spiceLevel: 2, allergens: ['dairy'], desc: 'Charcoal-blistered wings, yogurt overnight, brushed with chilli-ghee.' },
+  // Tandoori & Grill
+  { name: 'Tandoori Chicken', category: 'Tandoori & Grill', price: '$16.99', img: 'images/dish-tandoori-chicken.jpg', spiceLevel: 2, allergens: ['dairy'], desc: 'Yogurt and spice marinade overnight, then blistered over live charcoal. Smoke does the rest.' },
+  { name: 'Chicken Tikka', category: 'Tandoori & Grill', price: '$15.99', img: 'images/dish-chicken-tikka.jpg', spiceLevel: 2, allergens: ['dairy'], desc: 'Boneless smoky bites, charred edges, basted in butter while they rest. They rarely get to rest.' },
+  { name: 'Seekh Kebab', category: 'Tandoori & Grill', price: '$14.99', img: 'images/dish-seekh-kebab.jpg', spiceLevel: 2, allergens: [], desc: 'Hand-pressed lamb skewers straight off the smoke, with mint chutney that bites back.' },
+  { name: 'Tandoori Lamb Chops', category: 'Tandoori & Grill', price: '$22.99', img: ux('1685798830572-f07ff7635774'), spiceLevel: 2, allergens: ['dairy'], desc: 'Frenched chops, day-long marinade, seared hard over open coal. Pink at the bone.' },
+  { name: 'Malai Tikka', category: 'Tandoori & Grill', price: '$16.99', img: ux('1610057099431-d73a1c9d2f2f'), spiceLevel: 0, allergens: ['dairy', 'nuts'], desc: 'Chicken in a cream-and-cheese marinade, kissed by smoke, barely charred.' },
+  { name: 'Tandoori Prawns', category: 'Tandoori & Grill', price: '$19.99', img: ux('1685798830572-f07ff7635774'), spiceLevel: 2, allergens: ['shellfish'], desc: 'Jumbo prawns, carom and red chilli, straight off the skewer.' },
+  { name: 'Reshmi Kebab', category: 'Tandoori & Grill', price: '$15.99', img: ux('1610057099431-d73a1c9d2f2f'), spiceLevel: 1, allergens: ['dairy', 'nuts'], desc: 'Silken chicken mince, saffron and cream, grilled soft.' },
+  // Curries
+  { name: 'Butter Chicken', category: 'Curries', price: '$18.99', img: 'images/dish-butter-chicken.jpg', spiceLevel: 1, allergens: ['dairy', 'nuts'], desc: 'Tandoor-charred thigh folded into a slow tomato-butter gravy. The one people cross the city for.' },
+  { name: 'Rara Gosht', category: 'Curries', price: '$21.99', img: 'images/dish-rara-gosht.jpg', spiceLevel: 3, allergens: ['dairy'], desc: 'Slow mutton curry doubled down with spiced mince. Dark, rich, unapologetic.' },
+  { name: 'Kadai Chicken', category: 'Curries', price: '$17.99', img: ux('1585937421612-70a008356fbe'), spiceLevel: 2, allergens: [], desc: 'Bell pepper, crushed coriander seed, wok-tossed in a clinging masala.' },
+  { name: 'Rogan Josh', category: 'Curries', price: '$20.99', img: ux('1585937421612-70a008356fbe'), spiceLevel: 2, allergens: [], desc: 'Kashmiri mutton, slow-braised red with fennel and dry ginger.' },
+  { name: 'Palak Gosht', category: 'Curries', price: '$19.99', img: ux('1585937421612-70a008356fbe'), spiceLevel: 1, allergens: [], desc: 'Lamb sunk into iron-rich spinach, finished with a garlic tempering.' },
+  { name: 'Dal Makhani', category: 'Curries', price: '$13.99', img: ux('1585937421612-70a008356fbe'), spiceLevel: 0, allergens: ['dairy'], desc: 'Black lentils simmered overnight with butter and cream. Village patience.' },
+  // Biryani & Rice
+  { name: 'Chicken Biryani', category: 'Biryani & Rice', price: '$17.99', img: ux('1589302168068-964664d93dc0'), spiceLevel: 2, allergens: ['dairy'], desc: 'Long-grain rice layered with saffron chicken, sealed and dum-cooked.' },
+  { name: 'Mutton Biryani', category: 'Biryani & Rice', price: '$20.99', img: ux('1589302168068-964664d93dc0'), spiceLevel: 2, allergens: ['dairy'], desc: 'Tender mutton, fried onion, deep spice, cooked down under the lid.' },
+  { name: 'Jeera Rice', category: 'Biryani & Rice', price: '$6.99', img: ux('1589302168068-964664d93dc0'), spiceLevel: 0, allergens: [], desc: 'Basmati tempered with cumin and ghee. The quiet partner to any curry.' },
+  // Breads
+  { name: 'Garlic Naan', category: 'Breads', price: '$4.99', img: ux('1697155406014-04dc649b0953'), spiceLevel: 0, allergens: ['gluten', 'dairy'], desc: 'Tandoor-blistered, brushed with garlic butter and coriander.' },
+  { name: 'Butter Naan', category: 'Breads', price: '$3.99', img: ux('1697155406014-04dc649b0953'), spiceLevel: 0, allergens: ['gluten', 'dairy'], desc: 'Soft, charred at the edges, dripping with butter.' },
+  // Drinks & Dessert
+  { name: 'Mango Lassi', category: 'Drinks & Dessert', price: '$4.99', img: ux('1546173159-315724a31696'), spiceLevel: 0, allergens: ['dairy'], desc: 'Thick, sweet, cooling. The antidote to the heat.' },
+  { name: 'Gulab Jamun', category: 'Drinks & Dessert', price: '$5.99', img: ux('1666190092159-3171cf0fbb12'), spiceLevel: 0, allergens: ['dairy', 'gluten'], desc: 'Fried milk dumplings soaked in warm rose syrup.' },
+];
+const DISH_BY_NAME = Object.fromEntries(DISHES.map((d) => [d.name, d]));
+const SPICE_LABELS = ['Mild', 'Medium', 'Hot', 'Extra hot'];
+const flame = (on) => `<svg class="flame ${on ? 'on' : 'off'}" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C9 6 7 8.3 7 12a5 5 0 0 0 10 0c0-1.7-.7-3.1-1.6-4.3-.3 1-.9 1.8-1.9 2.3.5-2.7-.6-5.6-1.5-8z"/></svg>`;
+const cap = (s) => s[0].toUpperCase() + s.slice(1);
+
+// Full menu page: render every dish from data into the grid. Index keeps its
+// own 6 hardcoded cards (grid marker absent there → nothing rendered).
+const menuGrid = document.querySelector('[data-menu-grid]');
+if (menuGrid) {
+  DISHES.forEach((d) => {
+    const art = document.createElement('article');
+    art.className = 'dish';
+    art.dataset.category = d.category;
+    art.setAttribute('data-reveal', '');
+    art.innerHTML =
+      `<img src="${d.img}" alt="${d.name}" loading="lazy">` +
+      `<h3>${d.name}</h3><p>${d.desc}</p><span class="price">${d.price}</span>`;
+    menuGrid.appendChild(art);
+  });
+}
+
+// Spice + allergen meta on every .dish (index's hardcoded cards + menu's rendered
+// cards). Guard skips any card already tagged.
+document.querySelectorAll('.dish').forEach((card) => {
+  if (card.querySelector('.dish-meta')) return;
+  const name = card.querySelector('h3')?.textContent.trim();
+  const info = DISH_BY_NAME[name];
+  if (!info) return;
+  const meter = [0, 1, 2].map((i) => flame(i < info.spiceLevel)).join('');
+  const allergens = info.allergens.length
+    ? `<span class="sr-only">Contains: ${info.allergens.join(', ')}</span>` +
+      info.allergens.map((a) => `<span class="allergen" aria-hidden="true">${cap(a)}</span>`).join('')
+    : `<span class="sr-only">No major allergens</span><span class="allergen allergen--none" aria-hidden="true">No major allergens</span>`;
+  const meta = document.createElement('div');
+  meta.className = 'dish-meta';
+  meta.innerHTML =
+    `<span class="spice" role="img" aria-label="Spice level: ${SPICE_LABELS[info.spiceLevel]}">${meter}</span>` +
+    `<span class="allergens">${allergens}</span>`;
+  card.appendChild(meta);
+});
+
+// Category filter (menu page only). Client-side show/hide, no reload.
+const filterBar = document.querySelector('.menu-filters');
+if (filterBar && menuGrid) {
+  const cards = [...menuGrid.querySelectorAll('.dish')];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  filterBar.addEventListener('click', (e) => {
+    const btn = e.target.closest('.filter-pill');
+    if (!btn) return;
+    const cat = btn.dataset.filter;
+    filterBar.querySelectorAll('.filter-pill').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+    const shown = [];
+    cards.forEach((card) => {
+      const match = cat === 'all' || card.dataset.category === cat;
+      card.style.display = match ? '' : 'none';
+      if (match) shown.push(card);
+    });
+    // Re-fade the shown set (overwrite:true so it can't fight the scroll reveal),
+    // then refresh ScrollTrigger so positions recalc after the layout change.
+    if (!reduce && window.gsap) {
+      gsap.fromTo(shown, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.04, ease: 'power2.out', overwrite: true });
+    } else {
+      shown.forEach((c) => { c.style.opacity = ''; c.style.transform = ''; });
+    }
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  });
+}
+
 // ===== motion (GSAP) =====
 gsap.registerPlugin(ScrollTrigger);
 

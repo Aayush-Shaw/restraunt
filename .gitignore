@@ -1,0 +1,25 @@
+# Playwright / MCP test artifacts (screenshots, snapshots, console logs)
+.playwright-mcp/
+
+# Design references & mockups (not part of the deployed site)
+ChatGPT Image*.png
+Screenshot*.png
+
+# Dev planning docs (superpowers plans/specs)
+docs/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/
+.idea/
+
+# Node / tooling (in case any build tooling is added later)
+node_modules/
+
+# Claude Code / plugin state (local tooling, never deployed)
+.claude/
+.impeccable/
+.superpowers/
