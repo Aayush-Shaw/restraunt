@@ -1,270 +1,452 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Indian Grill — Charcoal-Fired Punjabi Kitchen, Edmonton</title>
-  <meta name="description" content="Authentic non-veg Punjabi food in Canada. Tandoori chicken, butter chicken, kebabs — straight off the charcoal. Book a table at Indian Grill, Edmonton.">
-  <link rel="canonical" href="https://aayush-shaw.github.io/restraunt/">
-  <meta name="robots" content="index, follow">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Indian Grill">
-  <meta property="og:locale" content="en_CA">
-  <meta property="og:title" content="Indian Grill — Charcoal-Fired Punjabi Kitchen, Edmonton">
-  <meta property="og:description" content="Non-vegetarian Punjabi restaurant in Edmonton, AB. Tandoori chicken, butter chicken, kebabs — straight off the charcoal.">
-  <meta property="og:url" content="https://aayush-shaw.github.io/restraunt/">
-  <meta property="og:image" content="https://aayush-shaw.github.io/restraunt/images/hero-tandoori.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Indian Grill — Charcoal-Fired Punjabi Kitchen, Edmonton">
-  <meta name="twitter:description" content="Non-vegetarian Punjabi restaurant in Edmonton, AB. Tandoori chicken, butter chicken, kebabs — straight off the charcoal.">
-  <meta name="twitter:image" content="https://aayush-shaw.github.io/restraunt/images/hero-tandoori.jpg">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100..900&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <!-- Structured data for search + AI answer engines. TODO(launch): replace placeholder telephone; verify geo coordinates. -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Restaurant",
-    "name": "Indian Grill",
-    "description": "Non-vegetarian Punjabi (North Indian) restaurant in Edmonton, AB. Charcoal-fired tandoori, overnight marinades, and slow curries — village recipes brought to Canada.",
-    "servesCuisine": ["Punjabi", "North Indian", "Indian"],
-    "url": "https://aayush-shaw.github.io/restraunt/",
-    "hasMenu": "https://aayush-shaw.github.io/restraunt/menu.html",
-    "image": "https://aayush-shaw.github.io/restraunt/images/hero-tandoori.jpg",
-    "telephone": "+1-780-555-0123",
-    "priceRange": "$$",
-    "acceptsReservations": "False",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "10132 104 St NW",
-      "addressLocality": "Edmonton",
-      "addressRegion": "AB",
-      "postalCode": "T5J 1B9",
-      "addressCountry": "CA"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 53.5438,
-      "longitude": -113.4921
-    },
-    "openingHoursSpecification": [{
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      "opens": "11:00",
-      "closes": "23:00"
-    }]
-  }
-  </script>
-</head>
-<body>
-  <header class="nav">
-    <a class="logo" href="index.html">INDIAN<span>GRILL</span></a>
-    <nav class="nav-pills">
-      <a href="menu.html">Menu</a>
-      <a href="story.html">Story</a>
-      <a href="reviews.html">Reviews</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <a class="btn btn-red btn-pulse" href="contact.html">Book a Table</a>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="hero-text">
-        <h1><span class="line-white">INDIAN</span><span class="line-red">GRILL</span></h1>
-        <p class="tagline">Charcoal-fired Punjabi kitchen. Overnight marinades, slow curries, meat off the open flame — village recipes, now in Canada.</p>
-        <a class="btn btn-red btn-lg btn-pulse" href="contact.html">Book a Table</a>
-      </div>
-      <div class="hero-plates">
-        <figure class="plate" data-depth="1">
-          <img src="images/hero-tandoori.jpg" alt="Charred tandoori chicken on a black plate">
-          <figcaption class="pill"><i></i>Charcoal Tandoor</figcaption>
-        </figure>
-        <figure class="plate" data-depth="2">
-          <img src="images/hero-curry.jpg" alt="Butter chicken in a dark bowl">
-          <figcaption class="pill"><i></i>Slow-Cooked Curries</figcaption>
-        </figure>
-        <figure class="plate" data-depth="3">
-          <img src="images/dish-butter-chicken.jpg" alt="Butter chicken plate">
-          <figcaption class="pill"><i></i>Butter Chicken</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="dishes">
-      <div class="container">
-        <h2 data-reveal>Signature <span class="accent">Fire</span></h2>
-        <p class="section-sub" data-reveal>Six dishes off the charcoal we'd put against anyone's. Marinated overnight, cooked over live flame, finished with ghee.</p>
-        <div class="dish-grid">
-          <article class="dish" data-reveal>
-            <img src="images/dish-butter-chicken.jpg" alt="Butter chicken in a copper bowl" loading="lazy">
-            <h3>Butter Chicken</h3>
-            <p>Tandoor-charred thigh folded into a slow tomato-butter gravy. The one people cross the city for.</p>
-            <span class="price">$18.99</span>
-          </article>
-          <article class="dish" data-reveal>
-            <img src="images/dish-tandoori-chicken.jpg" alt="Tandoori chicken with charred edges" loading="lazy">
-            <h3>Tandoori Chicken</h3>
-            <p>Yogurt and spice marinade overnight, then blistered over live charcoal. Smoke does the rest.</p>
-            <span class="price">$16.99</span>
-          </article>
-          <article class="dish" data-reveal>
-            <img src="images/dish-amritsari-fish.jpg" alt="Crispy Amritsari fried fish" loading="lazy">
-            <h3>Amritsari Fish</h3>
-            <p>Ajwain-spiked batter, fried crisp the way the street stalls of Amritsar do it. Lemon. Done.</p>
-            <span class="price">$15.99</span>
-          </article>
-          <article class="dish" data-reveal>
-            <img src="images/dish-rara-gosht.jpg" alt="Rara gosht mutton curry" loading="lazy">
-            <h3>Rara Gosht</h3>
-            <p>Slow mutton curry doubled down with spiced mince. Dark, rich, unapologetic.</p>
-            <span class="price">$21.99</span>
-          </article>
-          <article class="dish" data-reveal>
-            <img src="images/dish-seekh-kebab.jpg" alt="Seekh kebabs on skewers" loading="lazy">
-            <h3>Seekh Kebab</h3>
-            <p>Hand-pressed lamb skewers straight off the smoke, with mint chutney that bites back.</p>
-            <span class="price">$14.99</span>
-          </article>
-          <article class="dish" data-reveal>
-            <img src="images/dish-chicken-tikka.jpg" alt="Charred chicken tikka pieces" loading="lazy">
-            <h3>Chicken Tikka</h3>
-            <p>Boneless smoky bites, charred edges, basted in butter while they rest. They rarely get to rest.</p>
-            <span class="price">$15.99</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="story">
-      <div class="container story-grid">
-        <div data-reveal>
-          <h2>From the <span class="accent">Pind</span></h2>
-          <p class="section-sub">"Pind" means village. Our recipes come from one — handed down through three generations of cooks who never wrote anything down. We brought the marinades, the patience, and the fire to Canada. The tandoor is clay, the charcoal is real, and nothing leaves the kitchen until it would pass at a Punjabi wedding.</p>
-        </div>
-        <div class="story-stack" data-reveal>
-          <img src="images/story-fire.jpg" alt="Flames inside a clay tandoor oven" class="is-active" loading="lazy">
-          <img src="images/hero-curry.jpg" alt="Butter chicken simmering in a dark bowl" loading="lazy">
-          <img src="images/dish-rara-gosht.jpg" alt="Rara gosht mutton curry in a rustic bowl" loading="lazy">
-        </div>
-      </div>
-    </section>
-
-    <section class="reviews">
-      <div class="container">
-        <h2 data-reveal>Guests <span class="accent">Say</span></h2>
-        <div class="review-grid">
-          <blockquote class="review" data-reveal>
-            <div class="stars">★★★★★</div>
-            <p>"Best butter chicken I've had outside of India. Period."</p>
-            <div class="review-who">
-              <!-- TODO(launch): stock portraits — swap for real guest photos (with consent). -->
-              <img src="images/face-1.jpg" alt="" loading="lazy">
-              <cite>Sarah M. — Toronto, ON</cite>
-            </div>
-          </blockquote>
-          <blockquote class="review" data-reveal>
-            <div class="stars">★★★★★</div>
-            <p>"Drove up from Buffalo for the seekh kebabs. Worth the border wait, twice."</p>
-            <div class="review-who">
-              <img src="images/face-2.jpg" alt="" loading="lazy">
-              <cite>Jake T. — Buffalo, NY</cite>
-            </div>
-          </blockquote>
-          <blockquote class="review" data-reveal>
-            <div class="stars">★★★★★</div>
-            <p>"Tastes like my grandmother's Sunday mutton curry. I don't say that lightly."</p>
-            <div class="review-who">
-              <img src="images/face-3.jpg" alt="" loading="lazy">
-              <cite>Priya &amp; Dan — Mississauga, ON</cite>
-            </div>
-          </blockquote>
-        </div>
-      </div>
-    </section>
-
-    <section class="book">
-      <div class="container book-grid">
-        <div class="book-left">
-          <h2 data-reveal>Book a <span class="accent">Table</span></h2>
-          <p class="section-sub" data-reveal>Friday and Saturday nights go fast. Call us to reserve — online booking is coming soon.</p>
-          <div class="glass address-card" data-reveal>
-            <strong>Indian Grill</strong>
-            <!-- TODO(launch): replace placeholder phone (+1 780 555-0123 is fake). Address & hours are real. -->
-            <p>10132 104 St NW, Edmonton, AB</p>
-            <p>Open daily 11:00 – 23:00</p>
-            <p><a href="tel:+17805550123">+1 (780) 555-0123</a></p>
-          </div>
-        </div>
-        <!-- TODO(launch): booking form is an intentional placeholder — not wired to a backend.
-             To activate: get a form ID at formspree.io and replace REPLACE_FORM_ID. Until then the
-             submit handler in script.js shows the "call us" note instead of posting. -->
-        <form class="glass booking-form" action="https://formspree.io/f/REPLACE_FORM_ID" method="POST" data-reveal>
-          <p class="form-note">Online booking is coming soon. To reserve now, please <a href="tel:+17805550123">call us</a>.</p>
-          <input name="name" type="text" placeholder="Your name" autocomplete="name" aria-label="Your name" required>
-          <input name="phone" type="tel" placeholder="Phone number" autocomplete="tel" aria-label="Phone number" required>
-          <div class="form-row">
-            <input name="date" type="date" required aria-label="Date">
-            <input name="time" type="time" required aria-label="Time">
-          </div>
-          <select name="guests" required aria-label="Number of guests">
-            <option value="" disabled selected>Guests</option>
-            <option>2</option>
-            <option>4</option>
-            <option>6</option>
-            <option>8+</option>
-          </select>
-          <button class="btn btn-red" type="submit">Book Now</button>
-          <p class="form-status" role="status" aria-live="polite"></p>
-        </form>
-      </div>
-      <div class="map-wrap" data-reveal>
-        <!-- Map pin is set to the Edmonton address. TODO(launch): confirm exact pin once the storefront is verified on Google. -->
-        <iframe src="https://www.google.com/maps?q=10132+104+St+NW,+Edmonton,+AB&output=embed" loading="lazy" title="Indian Grill location on Google Maps"></iframe>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <a class="logo" href="index.html">INDIAN<span>GRILL</span></a>
-        <p>Charcoal-fired Punjabi kitchen in Edmonton. Village recipes, overnight marinades, meat off the open flame.</p>
-        <div class="socials">
-          <!-- TODO(launch): add real social profile URLs (Instagram/Facebook/X currently point to "#"). -->
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zm0 3.4a5.4 5.4 0 1 1 0 10.8 5.4 5.4 0 0 1 0-10.8zm0 2a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8zm5.6-2.9a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6z"/></svg></a>
-          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.6V3.6c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.4H7.8V13h2.7v8h3z"/></svg></a>
-          <a href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.8 3h3l-6.6 7.5L22 21h-6.1l-4.8-6.2L5.6 21h-3l7-8L2.4 3h6.3l4.3 5.7L17.8 3zm-1.1 16.2h1.7L7.7 4.7H5.9l10.8 14.5z"/></svg></a>
-        </div>
-      </div>
-      <nav class="footer-col" aria-label="Quick links">
-        <h4>Explore</h4>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Indian Grill — Charcoal-Fired Punjabi Kitchen, Edmonton</title>
+    <meta
+      name="description"
+      content="Authentic non-veg Punjabi food in Canada. Tandoori chicken, butter chicken, kebabs — straight off the charcoal. Book a table at Indian Grill, Edmonton."
+    />
+    <link rel="canonical" href="https://aayush-shaw.github.io/restraunt/" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Indian Grill" />
+    <meta property="og:locale" content="en_CA" />
+    <meta
+      property="og:title"
+      content="Indian Grill — Charcoal-Fired Punjabi Kitchen, Edmonton"
+    />
+    <meta
+      property="og:description"
+      content="Non-vegetarian Punjabi restaurant in Edmonton, AB. Tandoori chicken, butter chicken, kebabs — straight off the charcoal."
+    />
+    <meta
+      property="og:url"
+      content="https://aayush-shaw.github.io/restraunt/"
+    />
+    <meta
+      property="og:image"
+      content="https://aayush-shaw.github.io/restraunt/images/hero-tandoori.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Indian Grill — Charcoal-Fired Punjabi Kitchen, Edmonton"
+    />
+    <meta
+      name="twitter:description"
+      content="Non-vegetarian Punjabi restaurant in Edmonton, AB. Tandoori chicken, butter chicken, kebabs — straight off the charcoal."
+    />
+    <meta
+      name="twitter:image"
+      content="https://aayush-shaw.github.io/restraunt/images/hero-tandoori.jpg"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@100..900&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Structured data for search + AI answer engines. TODO(launch): replace placeholder telephone; verify geo coordinates. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Indian Grill",
+        "description": "Non-vegetarian Punjabi (North Indian) restaurant in Edmonton, AB. Charcoal-fired tandoori, overnight marinades, and slow curries — village recipes brought to Canada.",
+        "servesCuisine": ["Punjabi", "North Indian", "Indian"],
+        "url": "https://aayush-shaw.github.io/restraunt/",
+        "hasMenu": "https://aayush-shaw.github.io/restraunt/menu.html",
+        "image": "https://aayush-shaw.github.io/restraunt/images/hero-tandoori.jpg",
+        "telephone": "+1-780-555-0123",
+        "priceRange": "$$",
+        "acceptsReservations": "False",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "10132 104 St NW",
+          "addressLocality": "Edmonton",
+          "addressRegion": "AB",
+          "postalCode": "T5J 1B9",
+          "addressCountry": "CA"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 53.5438,
+          "longitude": -113.4921
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "11:00",
+            "closes": "23:00"
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="nav">
+      <a class="logo" href="/">INDIAN<span>GRILL</span></a>
+      <nav class="nav-pills">
         <a href="menu.html">Menu</a>
         <a href="story.html">Story</a>
         <a href="reviews.html">Reviews</a>
         <a href="contact.html">Contact</a>
       </nav>
-      <div class="footer-col">
-        <h4>Visit</h4>
-        <!-- TODO(launch): replace placeholder phone (+1 780 555-0123 is fake). Address & hours are real. -->
-        <p>10132 104 St NW, Edmonton, AB</p>
-        <p><a href="tel:+17805550123">+1 (780) 555-0123</a></p>
-        <p>Open daily 11:00 – 23:00</p>
-      </div>
-      <div class="footer-col">
-        <h4>Book</h4>
-        <p>Friday and Saturday nights go fast.</p>
-        <a class="btn btn-red" href="contact.html">Book a Table</a>
-      </div>
-    </div>
-    <p class="copyright">© 2026 Indian Grill. All rights reserved.</p>
-  </footer>
+      <a class="btn btn-red btn-pulse" href="contact.html">Book a Table</a>
+    </header>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
-  <script src="script.js"></script>
-</body>
+    <main>
+      <section class="hero">
+        <div class="hero-text">
+          <h1>
+            <span class="line-white">INDIAN</span
+            ><span class="line-red">GRILL</span>
+          </h1>
+          <p class="tagline">
+            Charcoal-fired Punjabi kitchen. Overnight marinades, slow curries,
+            meat off the open flame — village recipes, now in Canada.
+          </p>
+          <a class="btn btn-red btn-lg btn-pulse" href="contact.html"
+            >Book a Table</a
+          >
+        </div>
+        <div class="hero-plates">
+          <figure class="plate" data-depth="1">
+            <img
+              src="images/hero-tandoori.jpg"
+              alt="Charred tandoori chicken on a black plate"
+            />
+            <figcaption class="pill"><i></i>Charcoal Tandoor</figcaption>
+          </figure>
+          <figure class="plate" data-depth="2">
+            <img
+              src="images/butter-naan.webp"
+              alt="Butter chicken in a dark bowl"
+            />
+            <figcaption class="pill"><i></i>Slow-Cooked Curries</figcaption>
+          </figure>
+          <figure class="plate" data-depth="3">
+            <img
+              src="images/dish-butter-chicken.jpg"
+              alt="Butter chicken plate"
+            />
+            <figcaption class="pill"><i></i>Butter Chicken</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="dishes">
+        <div class="container">
+          <h2 data-reveal>Signature <span class="accent">Fire</span></h2>
+          <p class="section-sub" data-reveal>
+            Six dishes off the charcoal we'd put against anyone's. Marinated
+            overnight, cooked over live flame, finished with ghee.
+          </p>
+          <div class="dish-grid">
+            <article class="dish" data-reveal>
+              <img
+                src="images/dish-butter-chicken.jpg"
+                alt="Butter chicken in a copper bowl"
+                loading="lazy"
+              />
+              <h3>Butter Chicken</h3>
+              <p>
+                Tandoor-charred thigh folded into a slow tomato-butter gravy.
+                The one people cross the city for.
+              </p>
+              <span class="price">$18.99</span>
+            </article>
+            <article class="dish" data-reveal>
+              <img
+                src="images/dish-tandoori-chicken.jpg"
+                alt="Tandoori chicken with charred edges"
+                loading="lazy"
+              />
+              <h3>Tandoori Chicken</h3>
+              <p>
+                Yogurt and spice marinade overnight, then blistered over live
+                charcoal. Smoke does the rest.
+              </p>
+              <span class="price">$16.99</span>
+            </article>
+            <article class="dish" data-reveal>
+              <img
+                src="images/dish-amritsari-fish.jpg"
+                alt="Crispy Amritsari fried fish"
+                loading="lazy"
+              />
+              <h3>Amritsari Fish</h3>
+              <p>
+                Ajwain-spiked batter, fried crisp the way the street stalls of
+                Amritsar do it. Lemon. Done.
+              </p>
+              <span class="price">$15.99</span>
+            </article>
+            <article class="dish" data-reveal>
+              <img
+                src="images/dish-rara-gosht.jpg"
+                alt="Rara gosht mutton curry"
+                loading="lazy"
+              />
+              <h3>Rara Gosht</h3>
+              <p>
+                Slow mutton curry doubled down with spiced mince. Dark, rich,
+                unapologetic.
+              </p>
+              <span class="price">$21.99</span>
+            </article>
+            <article class="dish" data-reveal>
+              <img
+                src="images/dish-seekh-kebab.jpg"
+                alt="Seekh kebabs on skewers"
+                loading="lazy"
+              />
+              <h3>Seekh Kebab</h3>
+              <p>
+                Hand-pressed lamb skewers straight off the smoke, with mint
+                chutney that bites back.
+              </p>
+              <span class="price">$14.99</span>
+            </article>
+            <article class="dish" data-reveal>
+              <img
+                src="images/dish-chicken-tikka.jpg"
+                alt="Charred chicken tikka pieces"
+                loading="lazy"
+              />
+              <h3>Chicken Tikka</h3>
+              <p>
+                Boneless smoky bites, charred edges, basted in butter while they
+                rest. They rarely get to rest.
+              </p>
+              <span class="price">$15.99</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="story">
+        <div class="container story-grid">
+          <div data-reveal>
+            <h2>From the <span class="accent">Pind</span></h2>
+            <p class="section-sub">
+              "Pind" means village. Our recipes come from one — handed down
+              through three generations of cooks who never wrote anything down.
+              We brought the marinades, the patience, and the fire to Canada.
+              The tandoor is clay, the charcoal is real, and nothing leaves the
+              kitchen until it would pass at a Punjabi wedding.
+            </p>
+          </div>
+          <div class="story-stack" data-reveal>
+            <img
+              src="images/story-fire.jpg"
+              alt="Flames inside a clay tandoor oven"
+              class="is-active"
+              loading="lazy"
+            />
+            <img
+              src="images/hero-curry.jpg"
+              alt="Butter chicken simmering in a dark bowl"
+              loading="lazy"
+            />
+            <img
+              src="images/dish-rara-gosht.jpg"
+              alt="Rara gosht mutton curry in a rustic bowl"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="reviews">
+        <div class="container">
+          <h2 data-reveal>Guests <span class="accent">Say</span></h2>
+          <div class="review-grid">
+            <blockquote class="review" data-reveal>
+              <div class="stars">★★★★★</div>
+              <p>"Best butter chicken I've had outside of India. Period."</p>
+              <div class="review-who">
+                <!-- TODO(launch): stock portraits — swap for real guest photos (with consent). -->
+                <img src="images/face-1.jpg" alt="" loading="lazy" />
+                <cite>Sarah M. — Toronto, ON</cite>
+              </div>
+            </blockquote>
+            <blockquote class="review" data-reveal>
+              <div class="stars">★★★★★</div>
+              <p>
+                "Drove up from Buffalo for the seekh kebabs. Worth the border
+                wait, twice."
+              </p>
+              <div class="review-who">
+                <img src="images/face-2.jpg" alt="" loading="lazy" />
+                <cite>Jake T. — Buffalo, NY</cite>
+              </div>
+            </blockquote>
+            <blockquote class="review" data-reveal>
+              <div class="stars">★★★★★</div>
+              <p>
+                "Tastes like my grandmother's Sunday mutton curry. I don't say
+                that lightly."
+              </p>
+              <div class="review-who">
+                <img src="images/face-3.jpg" alt="" loading="lazy" />
+                <cite>Priya &amp; Dan — Mississauga, ON</cite>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section class="book">
+        <div class="container book-grid">
+          <div class="book-left">
+            <h2 data-reveal>Book a <span class="accent">Table</span></h2>
+            <p class="section-sub" data-reveal>
+              Friday and Saturday nights go fast. Call us to reserve — online
+              booking is coming soon.
+            </p>
+            <div class="glass address-card" data-reveal>
+              <strong>Indian Grill</strong>
+              <!-- TODO(launch): replace placeholder phone (+1 780 555-0123 is fake). Address & hours are real. -->
+              <p>10132 104 St NW, Edmonton, AB</p>
+              <p>Open daily 11:00 – 23:00</p>
+              <p><a href="tel:+17805550123">+1 (780) 555-0123</a></p>
+            </div>
+          </div>
+          <!-- TODO(launch): booking form is an intentional placeholder — not wired to a backend.
+             To activate: get a form ID at formspree.io and replace REPLACE_FORM_ID. Until then the
+             submit handler in script.js shows the "call us" note instead of posting. -->
+          <form
+            class="glass booking-form"
+            action="https://formspree.io/f/REPLACE_FORM_ID"
+            method="POST"
+            data-reveal
+          >
+            <p class="form-note">
+              Online booking is coming soon. To reserve now, please
+              <a href="tel:+17805550123">call us</a>.
+            </p>
+            <input
+              name="name"
+              type="text"
+              placeholder="Your name"
+              autocomplete="name"
+              aria-label="Your name"
+              required
+            />
+            <input
+              name="phone"
+              type="tel"
+              placeholder="Phone number"
+              autocomplete="tel"
+              aria-label="Phone number"
+              required
+            />
+            <div class="form-row">
+              <input name="date" type="date" required aria-label="Date" />
+              <input name="time" type="time" required aria-label="Time" />
+            </div>
+            <select name="guests" required aria-label="Number of guests">
+              <option value="" disabled selected>Guests</option>
+              <option>2</option>
+              <option>4</option>
+              <option>6</option>
+              <option>8+</option>
+            </select>
+            <button class="btn btn-red" type="submit">Book Now</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+        <div class="map-wrap" data-reveal>
+          <!-- Map pin is set to the Edmonton address. TODO(launch): confirm exact pin once the storefront is verified on Google. -->
+          <iframe
+            src="https://www.google.com/maps?q=10132+104+St+NW,+Edmonton,+AB&output=embed"
+            loading="lazy"
+            title="Indian Grill location on Google Maps"
+          ></iframe>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/">INDIAN<span>GRILL</span></a>
+          <p>
+            Charcoal-fired Punjabi kitchen in Edmonton. Village recipes,
+            overnight marinades, meat off the open flame.
+          </p>
+          <div class="socials">
+            <!-- TODO(launch): add real social profile URLs (Instagram/Facebook/X currently point to "#"). -->
+            <a href="#" aria-label="Instagram"
+              ><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zm0 3.4a5.4 5.4 0 1 1 0 10.8 5.4 5.4 0 0 1 0-10.8zm0 2a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8zm5.6-2.9a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6z"
+                /></svg
+            ></a>
+            <a href="#" aria-label="Facebook"
+              ><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.6V3.6c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.4H7.8V13h2.7v8h3z"
+                /></svg
+            ></a>
+            <a href="#" aria-label="X (Twitter)"
+              ><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M17.8 3h3l-6.6 7.5L22 21h-6.1l-4.8-6.2L5.6 21h-3l7-8L2.4 3h6.3l4.3 5.7L17.8 3zm-1.1 16.2h1.7L7.7 4.7H5.9l10.8 14.5z"
+                /></svg
+            ></a>
+          </div>
+        </div>
+        <nav class="footer-col" aria-label="Quick links">
+          <h4>Explore</h4>
+          <a href="menu.html">Menu</a>
+          <a href="story.html">Story</a>
+          <a href="reviews.html">Reviews</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="footer-col">
+          <h4>Visit</h4>
+          <!-- TODO(launch): replace placeholder phone (+1 780 555-0123 is fake). Address & hours are real. -->
+          <p>10132 104 St NW, Edmonton, AB</p>
+          <p><a href="tel:+17805550123">+1 (780) 555-0123</a></p>
+          <p>Open daily 11:00 – 23:00</p>
+        </div>
+        <div class="footer-col">
+          <h4>Book</h4>
+          <p>Friday and Saturday nights go fast.</p>
+          <a class="btn btn-red" href="contact.html">Book a Table</a>
+        </div>
+      </div>
+      <p class="copyright">© 2026 Indian Grill. All rights reserved.</p>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
+      integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
+      integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+  </body>
 </html>

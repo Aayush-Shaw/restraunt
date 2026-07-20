@@ -187,7 +187,7 @@ h2 .accent,
   gap: 8px;
   padding: 8px 18px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, .06);
+  background: rgba(85, 85, 85, 0.185);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   font-size: .85rem;
