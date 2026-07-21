@@ -1,0 +1,4 @@
+# Keep the Next.js source (punjabi/) out of the GitHub Pages build so it stops
+# shadowing punjabi.html and /restraunt/punjabi redirects correctly.
+exclude:
+  - punjabi
