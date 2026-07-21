@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Faint tiled food-icon texture, always on; a red copy follows the cursor on fine
 // pointers, or drifts on its own (CSS) on touch. Ported from script.js — the
@@ -11,13 +11,22 @@ const iconTile = (stroke: string): string =>
     "%23",
   );
 
-// Fine pointer → cursor-following glow; touch → self-drifting glow.
-const FINE = "[@media(hover:hover)and(pointer:fine)]";
-
 export function IconSpotlight() {
   const glowRef = useRef<HTMLDivElement>(null);
+  // Mouse users get the cursor glow; touch gets the self-drifting glow.
+  // null until detected on mount, so SSR renders neither (no hydration guess).
+  const [fine, setFine] = useState<boolean | null>(null);
 
   useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const update = (): void => setFine(mq.matches);
+    update();
+    mq.addEventListener("change", update); // e.g. a mouse plugged into a tablet
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (!fine) return;
     const onMove = (e: MouseEvent): void => {
       const el = glowRef.current;
       if (!el) return;
@@ -26,20 +35,17 @@ export function IconSpotlight() {
     };
     window.addEventListener("mousemove", onMove, { passive: true });
     return () => window.removeEventListener("mousemove", onMove);
-  }, []);
+  }, [fine]);
 
   return (
     <>
       <div className="icon-layer icon-layer--base" style={{ backgroundImage: iconTile("#f4f1ea") }} />
-      <div
-        ref={glowRef}
-        className={`icon-layer icon-layer--glow hidden ${FINE}:block`}
-        style={{ backgroundImage: iconTile("#7a1f1f") }}
-      />
-      <div
-        className={`icon-layer icon-layer--auto ${FINE}:hidden`}
-        style={{ backgroundImage: iconTile("#7a1f1f") }}
-      />
+      {fine === true && (
+        <div ref={glowRef} className="icon-layer icon-layer--glow" style={{ backgroundImage: iconTile("#7a1f1f") }} />
+      )}
+      {fine === false && (
+        <div className="icon-layer icon-layer--auto" style={{ backgroundImage: iconTile("#7a1f1f") }} />
+      )}
     </>
   );
 }
