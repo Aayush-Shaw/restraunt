@@ -1,26 +1,160 @@
 @import "tailwindcss";
 
+/* ===== design tokens (from the static site's styles.css) ===== */
+@theme {
+  --color-charcoal: #0a0a0a; /* --bg */
+  --color-surface: #151515;
+  --color-cream: #f4f1ea; /* --text */
+  --color-muted: #98938a;
+  --color-brand: #e6392e; /* --red */
+  --color-gold: #d9a441;
+
+  --font-display: var(--font-jost), sans-serif; /* Jost — display & UI */
+  --font-body: var(--font-lora), Georgia, serif; /* Lora — body copy */
+}
+
+/* corner radii: squircle-capable browsers (Chrome/Edge 139+) get larger radii,
+   everyone else keeps the fallback. Consumed via the --radius / --radius-sm /
+   --radius-input custom properties. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --radius: 25px;
+  --radius-sm: 25px;
+  --radius-input: 15px;
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@supports (corner-shape: squircle) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --radius: 60px;
+    --radius-sm: 3rem;
+    --radius-input: 30px;
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-charcoal);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ===== food-icon spotlight texture (layers rendered by fx/IconSpotlight) ===== */
+.icon-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-size: 140px 140px;
+  background-repeat: repeat;
+}
+.icon-layer--base {
+  opacity: 0.0165;
+}
+.icon-layer--glow {
+  opacity: 0.2;
+  -webkit-mask-image: radial-gradient(300px circle at var(--mouse-x, -100%) var(--mouse-y, -100%), #000 0%, transparent 70%);
+  mask-image: radial-gradient(300px circle at var(--mouse-x, -100%) var(--mouse-y, -100%), #000 0%, transparent 70%);
+}
+
+@property --gx { syntax: '<length-percentage>'; inherits: false; initial-value: 50%; }
+@property --gy { syntax: '<length-percentage>'; inherits: false; initial-value: 50%; }
+
+.icon-layer--auto {
+  opacity: 0.2;
+  -webkit-mask-image: radial-gradient(300px circle at var(--gx) var(--gy), #000 0%, transparent 70%);
+  mask-image: radial-gradient(300px circle at var(--gx) var(--gy), #000 0%, transparent 70%);
+  animation: icon-glow-drift 14s ease-in-out infinite alternate;
+}
+@keyframes icon-glow-drift {
+  0%   { --gx: 15%; --gy: 25%; }
+  50%  { --gx: 85%; --gy: 55%; }
+  100% { --gx: 35%; --gy: 85%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .icon-layer--auto { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ===== pulsing ring + shine sweep on the booking CTA ===== */
+.btn-pulse {
+  position: relative;
+  overflow: hidden;
+}
+.btn-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: translateX(-130%);
+}
+.btn-pulse:hover::after {
+  transform: translateX(130%);
+  transition: transform 0.6s ease;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn-pulse {
+    animation: btn-ping 3.2s ease-out infinite;
+  }
+}
+@keyframes btn-ping {
+  0%   { box-shadow: 0 0 0 0 rgba(230, 57, 46, 0.45); }
+  55%  { box-shadow: 0 0 0 12px rgba(230, 57, 46, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(230, 57, 46, 0); }
+}
+
+/* ===== story image stack: rotating duotone-to-color reveal + 3D tilt on hover ===== */
+.story-stack {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius);
+  corner-shape: squircle;
+  overflow: hidden;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.55);
+  transform: perspective(900px);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.story-stack img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease, filter 0.5s ease;
+  filter: saturate(0.55) contrast(1.05);
+}
+.story-stack img.is-active {
+  opacity: 1;
+}
+.story-stack::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(230, 57, 46, 0.28), rgba(10, 10, 10, 0.35));
+  mix-blend-mode: multiply;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.story-stack:hover {
+  transform: perspective(900px) rotateX(2deg) rotateY(-3deg) translateY(-6px);
+  box-shadow: 0 44px 88px rgba(0, 0, 0, 0.7);
+}
+.story-stack:hover::after {
+  opacity: 0;
+}
+.story-stack:hover img {
+  filter: saturate(1) contrast(1);
+}
+
+/* ===== menu card: booking-form surface (bg + border via utilities) + brand glow on hover ===== */
+.dish-card {
+  transition: box-shadow 0.4s ease;
+}
+.dish-card:hover {
+  box-shadow: 0 6px 40px -4px color-mix(in oklab, var(--color-brand) 20%, transparent);
 }
