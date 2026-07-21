@@ -13,6 +13,11 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
     glow.style.setProperty('--mouse-x', `${e.clientX}px`);
     glow.style.setProperty('--mouse-y', `${e.clientY}px`);
   }, { passive: true });
+} else {
+  // touch (mobile/tablet): no cursor to follow — glow drifts on its own via CSS
+  const glow = document.body.appendChild(document.createElement('div'));
+  glow.className = 'icon-layer icon-layer--auto';
+  glow.style.backgroundImage = iconTile('#7a1f1f');
 }
 
 // nav glass state
@@ -227,7 +232,7 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
 // linear by distance, exponentially eased toward target each frame.
 // Fine-pointer only — useless without a hovering cursor.
 if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
-  const FROM = 400, TO = 900, REACH = 200, TAU = 0.3; // matches the resource (strength 25 → 200px, tween 0.3s)
+  const FROM = 600, TO = 900, REACH = 200, TAU = 0.3; // matches the resource (strength 25 → 200px, tween 0.3s)
   const letters = [];
 
   // Split each heading's text into per-letter spans, grouped into
