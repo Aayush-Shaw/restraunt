@@ -33,6 +33,34 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ===== scrollbar: iOS-style translucent pill, no track =====
+   Standard props (Firefox, Chrome 121+, Safari 18.4+) + -webkit- fallback for
+   older Chromium/Safari. Modern Chromium ignores the -webkit- rules once
+   scrollbar-color is set, so the two blocks never fight.
+   The transparent border + padding-box clip insets the pill so it floats. */
+:root {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(244, 241, 234, 0.07) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(244, 241, 234, 0.28);
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(244, 241, 234, 0.45);
+  background-clip: padding-box;
+}
+
 body {
   background: var(--color-charcoal);
   color: var(--color-cream);
@@ -55,7 +83,7 @@ body {
   opacity: 0.0165;
 }
 .icon-layer--glow {
-  opacity: 0.2;
+  opacity: 0.3;
   -webkit-mask-image: radial-gradient(300px circle at var(--mouse-x, -100%) var(--mouse-y, -100%), #000 0%, transparent 70%);
   mask-image: radial-gradient(300px circle at var(--mouse-x, -100%) var(--mouse-y, -100%), #000 0%, transparent 70%);
 }
@@ -64,10 +92,10 @@ body {
 @property --gy { syntax: '<length-percentage>'; inherits: false; initial-value: 50%; }
 
 .icon-layer--auto {
-  opacity: 0.2;
+  opacity: 0.3;
   -webkit-mask-image: radial-gradient(300px circle at var(--gx) var(--gy), #000 0%, transparent 70%);
   mask-image: radial-gradient(300px circle at var(--gx) var(--gy), #000 0%, transparent 70%);
-  animation: icon-glow-drift 14s ease-in-out infinite alternate;
+  animation: icon-glow-drift 15s ease-in-out infinite alternate;
 }
 @keyframes icon-glow-drift {
   0%   { --gx: 15%; --gy: 25%; }
