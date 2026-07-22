@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/Button";
+import { MagneticCTAButton } from "@/components/ui/MagneticCTAButton";
 import { gsap, useGSAP } from "@/lib/gsap";
 
 interface Plate {
@@ -54,7 +54,7 @@ export function Hero() {
   return (
     <section
       ref={root}
-      className="mx-auto grid max-w-310 grid-cols-[1.1fr_1fr] items-start gap-10 px-10 pt-37.5 pb-20 min-h-dvh max-[900px]:min-h-0 max-[900px]:grid-cols-1 max-[900px]:gap-12 max-[900px]:px-6 max-[900px]:pt-30 max-[900px]:pb-16 [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:min-h-0 [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:items-start [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:pt-35 [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:pb-22.5"
+      className="mx-auto grid max-w-310 grid-cols-[1.1fr_1fr] items-start gap-8 px-8 pt-30 pb-20 min-h-dvh max-[900px]:min-h-0 max-[900px]:grid-cols-1 max-[900px]:gap-6 max-[900px]:px-6 max-[900px]:pt-20 max-[900px]:pb-16 [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:min-h-0 [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:items-start [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:pt-20 [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:pb-22.5"
     >
       <div>
         <h1 className="overflow-hidden font-display text-[clamp(4.5rem,12vw,10rem)] font-medium uppercase leading-[.95] tracking-[-.01em]">
@@ -63,11 +63,23 @@ export function Hero() {
         </h1>
         <p className="js-hero-fade mt-7 mb-9 max-w-[42ch] text-[1.1rem] text-muted">
           Charcoal-fired Punjabi kitchen. Overnight marinades, slow curries, meat
-          off the open flame — village recipes, now in Canada.
+          off the open flame - village recipes, now in Canada.
         </p>
-        <Button href="/contact" lg pulse className="js-hero-fade">
+        <MagneticCTAButton href="/contact" className="js-hero-fade group gap-2">
           Book a Table
-        </Button>
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-[.9em] w-[.9em] transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+          >
+            <path d="M7 17 17 7M7 7h10v10" />
+          </svg>
+        </MagneticCTAButton>
       </div>
 
       <div className="relative h-155 max-[900px]:static max-[900px]:h-auto max-[900px]:flex max-[900px]:flex-wrap max-[900px]:justify-center max-[900px]:gap-5">

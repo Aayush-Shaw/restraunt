@@ -31,20 +31,20 @@ export function Navbar() {
   }, [open]);
 
   const glass = scrolled
-    ? "bg-surface/55 backdrop-blur-[16px]"
+    ? "bg-surface/10 backdrop-blur-[10px]"
     : "bg-transparent";
   const pillH = "h-12 max-[860px]:h-10"; // shared pill height, tablet + desktop
 
   return (
     <header
       ref={headerRef}
-      className="fixed inset-x-0 top-0 z-100 px-10 py-5 max-[860px]:px-5 max-[860px]:py-3.5"
+      className="fixed inset-x-0 top-0 z-100 px-8 py-4 max-[860px]:px-4 max-[860px]:py-3"
     >
       {/* Container — morphs into a full-width box on mobile when the menu opens */}
       <div
         className={`mx-auto max-w-310 transition-all duration-500 max-[640px]:overflow-hidden max-[640px]:rounded-(--radius) max-[640px]:border max-[640px]:[corner-shape:squircle] ${
     open
-      ? "max-[640px]:border-white/10 max-[640px]:bg-surface/92 max-[640px]:shadow-2xl max-[640px]:backdrop-blur-lg"
+      ? "max-[640px]:border-white/10 max-[640px]:bg-surface/10 max-[640px]:shadow-2xl max-[640px]:backdrop-blur-lg"
       : "max-[640px]:border-transparent"
   }`}
       >
@@ -82,7 +82,6 @@ export function Navbar() {
 
           <Button
             href="/contact"
-            pulse
             className={`${pillH} px-5! max-[860px]:px-3.5! max-[860px]:text-[.92rem] max-[640px]:hidden`}
           >
             Book a Table
@@ -95,7 +94,7 @@ export function Navbar() {
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
             className={`relative hidden h-10.5 w-10.5 items-center justify-center rounded-full transition-[background] duration-300 max-[640px]:inline-flex ${
-              open ? "" : "bg-surface/55 backdrop-blur-lg"
+              open ? "" : glass
             }`}
           >
             <span

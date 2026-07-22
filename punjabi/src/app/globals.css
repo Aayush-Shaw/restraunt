@@ -107,32 +107,53 @@ body {
   html { scroll-behavior: auto; }
 }
 
-/* ===== pulsing ring + shine sweep on the booking CTA ===== */
-.btn-pulse {
+/* ===== hero CTA: cream circle sweeps out from the cursor =====
+   ONE mechanism only — a transition on --sweep (0..1). The idle pulse toggles
+   [data-sweep] on an interval (see ui/MagneticCTAButton.tsx) rather than running
+   a @keyframes loop: a CSS animation outranks a transition, so removing it on
+   :hover made --sweep jump to 1 instead of easing there. Same reason the
+   magnetic pull is GSAP on `transform` while CSS only touches `translate` —
+   never let two mechanisms own one property.
+
+   The label reads --sweep too, so the text darkens on exactly the circle's curve
+   — one value, one timing, nothing to drift. Don't give the label its own
+   property/easing: a second curve over the same duration still lags, because the
+   circle covers the button by ~scale 0.45 while a back-loaded ease is barely off
+   zero, and the text visibly catches up after the fill lands. */
+@property --sweep { syntax: '<number>'; inherits: true; initial-value: 0; }
+
+.btn-cta {
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+  color: color-mix(in oklab, var(--color-charcoal) calc(var(--sweep) * 100%), var(--color-cream));
+  transition:
+    --sweep 0.45s ease,
+    translate 0.2s ease-out;
 }
-.btn-pulse::after {
+.btn-cta::before {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
-  transform: translateX(-130%);
+  z-index: -1; /* above the red fill, below the label */
+  left: var(--mx, 50%);
+  top: var(--my, 50%);
+  width: 260%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: var(--color-cream);
+  scale: var(--sweep);
 }
-.btn-pulse:hover::after {
-  transform: translateX(130%);
-  transition: transform 0.6s ease;
+/* Real hover and the idle pulse land on the same rule, so they can't stack —
+   hovering mid-pulse simply holds --sweep at 1 until the pointer leaves. */
+.btn-cta:hover,
+.btn-cta[data-sweep] {
+  --sweep: 1;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .btn-pulse {
-    animation: btn-ping 3.2s ease-out infinite;
+@media (prefers-reduced-motion: reduce) {
+  .btn-cta {
+    transition: none;
   }
-}
-@keyframes btn-ping {
-  0%   { box-shadow: 0 0 0 0 rgba(230, 57, 46, 0.45); }
-  55%  { box-shadow: 0 0 0 12px rgba(230, 57, 46, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(230, 57, 46, 0); }
 }
 
 /* ===== story image stack: rotating duotone-to-color reveal + 3D tilt on hover ===== */

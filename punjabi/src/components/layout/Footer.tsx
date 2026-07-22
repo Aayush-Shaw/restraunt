@@ -12,7 +12,7 @@ const colText = "mb-2.5 block text-[.95rem] text-muted";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/[.07] pt-[72px] pb-6">
+    <footer className="border-t border-white/[.07] pt-18 pb-6">
       <Container className="grid grid-cols-[1.4fr_1fr_1fr_1fr] items-start gap-12 max-[1024px]:grid-cols-2 max-[1024px]:gap-x-8 max-[1024px]:gap-y-10 max-[640px]:grid-cols-1 max-[640px]:gap-10 max-[640px]:text-center">
         <div>
           <Logo />
