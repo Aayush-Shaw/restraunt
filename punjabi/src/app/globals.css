@@ -167,6 +167,16 @@ body {
   transform: perspective(900px);
   transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
+/* In the two-column Story layout, drop the fixed 4:3 ratio and let the grid
+   stretch (items-stretch) size the stack to the text column's height beside it.
+   The absolutely-positioned images have no intrinsic height, so the text column
+   defines the row and the stack matches it. Mobile keeps the 4:3 ratio above. */
+@media (min-width: 901px) {
+  .story-stack {
+    aspect-ratio: auto;
+    height: 100%;
+  }
+}
 .story-stack img {
   position: absolute;
   inset: 0;
