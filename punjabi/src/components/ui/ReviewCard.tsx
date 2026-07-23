@@ -3,7 +3,7 @@ import type { Review } from "@/data/site";
 
 export function ReviewCard({ review }: { review: Review }) {
   return (
-    <blockquote data-reveal="" className="flex flex-col gap-3.5">
+    <blockquote data-reveal="" className="flex flex-col gap-1">
       <div className="tracking-[0.2em] text-gold" aria-label="5 out of 5 stars">
         ★★★★★
       </div>
@@ -15,7 +15,7 @@ export function ReviewCard({ review }: { review: Review }) {
           alt=""
           width={44}
           height={44}
-          className="h-11 w-11 rounded-full border-2 border-white/15 object-cover"
+          className="h-11 w-11 rounded-full border border-white/10 object-cover"
         />
         <cite className="text-[.95rem] not-italic text-muted">{review.cite}</cite>
       </div>

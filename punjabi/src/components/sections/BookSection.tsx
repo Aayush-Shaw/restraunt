@@ -47,10 +47,10 @@ export function BookSection({
 }) {
   return (
     <Section pageFirst={pageFirst} noPadBottom>
-      <Container className="grid grid-cols-[1.1fr_1fr] items-stretch gap-16 max-[900px]:grid-cols-1 max-[900px]:gap-10">
+      <Container className="grid grid-cols-[1.1fr_1fr] items-stretch gap-4 max-[900px]:grid-cols-1 max-[900px]:gap-8">
         <div className="flex min-w-0 flex-col">
           <SectionHeading as={as} lead="Book a" accent="Table" reveal />
-          <p data-reveal="" className="my-5 max-w-[46ch] text-[1.05rem] text-muted">
+          <p data-reveal="" className="my-4 md:my-6 max-w-[46ch] text-[1.05rem] text-muted">
             Friday and Saturday nights go fast. Call us to reserve — online booking is coming soon.
           </p>
           <AddressCard />

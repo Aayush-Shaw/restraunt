@@ -78,7 +78,7 @@ export function Hero() {
   return (
     <section
       ref={root}
-      className="mx-auto grid max-w-310 grid-cols-[1.1fr_1fr] items-start gap-8 px-8 pt-30 pb-20 max-[900px]:pb-14 max-[860px]:px-4 max-[860px]:gap-4 max-[900px]:grid-cols-1 max-[900px]:gap-6 max-[900px]:px-6 max-[900px]:pt-20 [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:items-start [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:pt-20"
+      className="mx-auto grid max-w-310 grid-cols-[1.1fr_1fr] items-start gap-8 px-8 pt-30 pb-20 max-[900px]:pb-14 max-[860px]:px-4 max-[860px]:gap-0 max-[900px]:grid-cols-1 max-[900px]:gap-0 max-[900px]:px-6 max-[900px]:pt-20 [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:items-start [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:pt-20"
     >
       <div ref={leftRef}>
         <h1 className="overflow-hidden font-display text-[clamp(4.5rem,12vw,10rem)] font-medium uppercase leading-[.95] tracking-[-.01em]">

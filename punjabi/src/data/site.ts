@@ -31,7 +31,7 @@ export interface Review {
 
 export const REVIEWS: readonly Review[] = [
   {
-    quote: "Best butter chicken I've had outside of India. Period.",
+    quote: "Best butter chicken I've had outside of India. The taste is awesome.",
     img: "/images/face-1.jpg",
     cite: "Sarah M. — Toronto, ON",
   },
