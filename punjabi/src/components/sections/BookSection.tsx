@@ -26,9 +26,10 @@ function AddressCard() {
 function MapEmbed() {
   return (
     <div data-reveal="" className="mt-24 h-120 max-[900px]:mt-16 max-[900px]:h-80">
-      {/* Map pin is set to the Edmonton address. */}
+      {/* Map pin only — points at Empire Banquet Hall, Calgary (from the shared
+          Google Maps link). The address text elsewhere is left as-is. */}
       <iframe
-        src="https://www.google.com/maps?q=10132+104+St+NW,+Edmonton,+AB&output=embed"
+        src="https://www.google.com/maps?q=EMPIRE+BANQUET+HALL,+4826+11+St+NE,+Calgary,+AB+T2E+2W7&ftid=0x537165a9fa68dff3:0xf208dd17989f34cf&output=embed"
         loading="lazy"
         title="Indian Grill location on Google Maps"
         className="h-full w-full border-0 filter-[grayscale(1)_invert(.92)_contrast(.85)]"
