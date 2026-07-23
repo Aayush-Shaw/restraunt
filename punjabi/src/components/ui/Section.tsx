@@ -19,8 +19,8 @@ export function Section({
 }) {
   const top = pageFirst
     ? "pt-[180px] max-[1024px]:pt-[150px]"
-    : "pt-8 max-[640px]:pt-4 max-[900px]:pt-6";
-  const bottom = noPadBottom ? "" : "pb-8 max-[640px]:pb-4 max-[900px]:pb-6";
+    : "pt-8 max-[900px]:pt-6";
+  const bottom = noPadBottom ? "" : "pb-8 max-[900px]:pb-6";
   return (
     <section
       id={id}
