@@ -31,8 +31,8 @@ export function Navbar() {
   }, [open]);
 
   const glass = scrolled
-    ? "bg-surface/10 backdrop-blur-[10px]"
-    : "bg-transparent";
+    ? "bg-surface/10 backdrop-blur-lg border border-white/10"
+    : "bg-transparent border border-white/10";
   const pillH = "h-12 max-[860px]:h-10"; // shared pill height, tablet + desktop
 
   return (
@@ -61,7 +61,7 @@ export function Navbar() {
           />
 
           <nav
-            className={`${pillH} flex items-center gap-1 rounded-full p-1.5 transition-[background] duration-300 ${glass} max-[640px]:hidden`}
+            className={`${pillH} flex items-center gap-1 rounded-full p-1 transition-[background] duration-300 ${glass} max-[640px]:hidden`}
           >
             {NAV_LINKS.map((l) => {
               const active = pathname === l.href;
@@ -70,8 +70,8 @@ export function Navbar() {
                   key={l.href}
                   href={l.href}
                   aria-current={active ? "page" : undefined}
-                  className={`rounded-full font-display px-5 py-2 text-[.9rem] transition-[color,background] hover:bg-white/[.07] hover:text-cream max-[860px]:px-3.25 max-[860px]:py-1.75 max-[860px]:text-[.82rem] ${
-                    active ? "bg-white/9 text-cream" : "text-muted"
+                  className={`rounded-full font-display px-5 py-2 text-[.9rem] transition-[color,background] hover:bg-white/5 hover:text-cream max-[860px]:px-3.25 max-[860px]:py-1.75 max-[860px]:text-[.82rem] ${
+                    active ? "bg-white/5 text-cream" : "text-muted"
                   }`}
                 >
                   {l.label}
@@ -82,10 +82,10 @@ export function Navbar() {
 
           {/* Auth actions replace the old "Book a Table" shortcut — both route to
               the same /login screen, opened on the matching view. */}
-          <div className="flex items-center gap-2 max-[640px]:hidden">
+          <div className="flex items-center gap-1 max-[640px]:hidden">
             <Link
               href="/login"
-              className={`${pillH} inline-flex items-center rounded-full border border-white/15 px-5 font-display font-medium text-cream transition-colors hover:bg-white/[.07] max-[860px]:px-3.5 max-[860px]:text-[.92rem]`}
+              className={`${pillH} ${glass} inline-flex items-center rounded-full border border-white/15 px-5 font-display font-medium text-cream transition-colors hover:bg-white/5 max-[860px]:px-3.5 max-[860px]:text-[.92rem]`}
             >
               Login
             </Link>

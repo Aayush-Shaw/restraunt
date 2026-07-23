@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { MagneticCTAButton } from "@/components/ui/MagneticCTAButton";
 import { gsap, useGSAP } from "@/lib/gsap";
@@ -21,6 +21,30 @@ const PLATES: Plate[] = [
 
 export function Hero() {
   const root = useRef<HTMLElement>(null);
+  const leftRef = useRef<HTMLDivElement>(null);
+  const plateColRef = useRef<HTMLDivElement>(null);
+
+  // Two-column layout only (>900px): pin the plate column's height to the text
+  // column's height + 20px. Below 900px the layout stacks and CSS owns height.
+  // CSS can't reference a sibling's height, so measure it. Not React state — a
+  // direct style write, so no re-render and no lint friction.
+  useEffect(() => {
+    const left = leftRef.current;
+    const right = plateColRef.current;
+    if (!left || !right) return;
+    const twoCol = window.matchMedia("(min-width: 901px)");
+    const sync = (): void => {
+      right.style.height = twoCol.matches ? `${left.offsetHeight + 20}px` : "";
+    };
+    sync();
+    const ro = new ResizeObserver(sync);
+    ro.observe(left);
+    twoCol.addEventListener("change", sync);
+    return () => {
+      ro.disconnect();
+      twoCol.removeEventListener("change", sync);
+    };
+  }, []);
 
   useGSAP(
     () => {
@@ -54,9 +78,9 @@ export function Hero() {
   return (
     <section
       ref={root}
-      className="mx-auto grid max-w-310 grid-cols-[1.1fr_1fr] items-start gap-8 px-8 pt-30 pb-20 min-h-dvh max-[900px]:min-h-0 max-[900px]:grid-cols-1 max-[900px]:gap-6 max-[900px]:px-6 max-[900px]:pt-20 max-[900px]:pb-16 [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:min-h-0 [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:items-start [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:pt-20 [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:pb-22.5"
+      className="mx-auto grid max-w-310 grid-cols-[1.1fr_1fr] items-start gap-8 px-8 pt-30 min-h-dvh max-[900px]:min-h-0 max-[900px]:grid-cols-1 max-[900px]:gap-6 max-[900px]:px-6 max-[900px]:pt-20 [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:min-h-0 [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:items-start [@media(min-width:901px)_and_(max-width:1024px)_and_(orientation:portrait)]:pt-20"
     >
-      <div>
+      <div ref={leftRef}>
         <h1 className="overflow-hidden font-display text-[clamp(4.5rem,12vw,10rem)] font-medium uppercase leading-[.95] tracking-[-.01em]">
           <span className="block">INDIAN</span>
           <span className="block text-brand">GRILL</span>
@@ -82,7 +106,10 @@ export function Hero() {
         </MagneticCTAButton>
       </div>
 
-      <div className="relative h-155 max-[900px]:static max-[900px]:h-auto max-[900px]:flex max-[900px]:flex-wrap max-[900px]:justify-center max-[900px]:gap-5">
+      <div
+        ref={plateColRef}
+        className="relative h-155 max-[900px]:static max-[900px]:h-auto max-[900px]:flex max-[900px]:flex-wrap max-[900px]:justify-center max-[900px]:gap-5"
+      >
         {PLATES.map((plate) => (
           <figure
             key={plate.label}

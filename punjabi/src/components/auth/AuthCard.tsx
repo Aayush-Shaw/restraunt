@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { CheckIcon } from "@/components/ui/icons";
 
 // Dummy auth — no real provider, no session. Client-side validation gives it a
 // polished feel, then it lands on a success state.
@@ -65,9 +66,9 @@ export function AuthCard({ initialMode }: { initialMode: AuthMode }) {
 
   if (welcome) {
     return (
-      <div className="w-full max-w-[420px] rounded-(--radius) border border-white/8 bg-surface/40 p-8 text-center [corner-shape:squircle]">
-        <span className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full bg-brand/15 text-[1.8rem] text-brand">
-          ✓
+      <div className="w-full max-w-105 rounded-(--radius) border border-white/8 bg-surface/40 p-8 text-center [corner-shape:squircle]">
+        <span className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full bg-brand/15 text-brand">
+          <CheckIcon className="h-7 w-7" />
         </span>
         <h1 className="font-display text-[1.6rem] font-medium">
           {isSignup ? "Account created" : "Welcome back"}
@@ -81,7 +82,7 @@ export function AuthCard({ initialMode }: { initialMode: AuthMode }) {
   }
 
   return (
-    <div className="w-full max-w-[420px] rounded-(--radius) border border-white/8 bg-surface/40 p-8 [corner-shape:squircle] max-[520px]:p-6">
+    <div className="w-full max-w-105 rounded-(--radius) border border-white/8 bg-surface/40 p-8 [corner-shape:squircle] max-[520px]:p-6">
       <h1 className="font-display text-[1.9rem] font-medium">
         {isSignup ? "Create account" : "Welcome back"}
       </h1>
@@ -95,7 +96,7 @@ export function AuthCard({ initialMode }: { initialMode: AuthMode }) {
         type="button"
         onClick={onGoogle}
         disabled={googleLoading}
-        className="mt-7 flex w-full cursor-pointer items-center justify-center gap-3 rounded-full border border-white/12 bg-white/[.04] py-3 font-display font-medium text-cream transition-colors hover:bg-white/[.08] disabled:opacity-60"
+        className="mt-7 flex w-full cursor-pointer items-center justify-center gap-3 rounded-full border border-white/12 bg-white/4 py-3 font-display font-medium text-cream transition-colors hover:bg-white/8 disabled:opacity-60"
       >
         <GoogleMark />
         {googleLoading ? "Connecting…" : "Continue with Google"}

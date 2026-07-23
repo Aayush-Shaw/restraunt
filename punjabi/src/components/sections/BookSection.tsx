@@ -8,7 +8,7 @@ function AddressCard() {
   return (
     <div
       data-reveal=""
-      className="mt-auto flex flex-col gap-1 rounded-[var(--radius)] border border-white/[.08] bg-surface/30 px-7 py-6 [corner-shape:squircle]"
+      className="mt-auto flex flex-col gap-1 rounded-(--radius) border border-white/8 bg-surface/30 px-7 py-6 [corner-shape:squircle]"
     >
       <strong className="text-[1.1rem] font-semibold">{CONTACT.name}</strong>
       {/* TODO(launch): +1 (780) 555-0123 is a placeholder. Address & hours are real. */}
@@ -25,13 +25,13 @@ function AddressCard() {
 
 function MapEmbed() {
   return (
-    <div data-reveal="" className="mt-24 h-[480px] max-[900px]:mt-16 max-[900px]:h-[320px]">
+    <div data-reveal="" className="mt-24 h-120 max-[900px]:mt-16 max-[900px]:h-80">
       {/* Map pin is set to the Edmonton address. */}
       <iframe
         src="https://www.google.com/maps?q=10132+104+St+NW,+Edmonton,+AB&output=embed"
         loading="lazy"
         title="Indian Grill location on Google Maps"
-        className="h-full w-full border-0 [filter:grayscale(1)_invert(.92)_contrast(.85)]"
+        className="h-full w-full border-0 filter-[grayscale(1)_invert(.92)_contrast(.85)]"
       />
     </div>
   );

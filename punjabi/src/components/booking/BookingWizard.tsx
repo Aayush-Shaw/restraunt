@@ -4,6 +4,7 @@ import { useRef, useState, type FormEvent } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Button } from "@/components/ui/Button";
 import { DummyPaymentButton } from "@/components/ui/DummyPaymentButton";
+import { CheckIcon } from "@/components/ui/icons";
 import { MAX_PARTY, TABLES, type BookingStep, type Table } from "./tables";
 
 // Multi-step reservation wizard — all four steps render inside the one box, no
@@ -98,7 +99,7 @@ export function BookingWizard() {
     >
       {step !== "confirmed" && (
         <div className="mb-6 flex items-center justify-between">
-          <span className="font-display text-[.82rem] tracking-[0.05em] text-muted uppercase">
+          <span className="font-display text-[.82rem] tracking-wider text-muted uppercase">
             Step {ORDER.indexOf(step) + 1} of {ORDER.length} · {STEP_LABEL[step]}
           </span>
           <div className="flex gap-1.5">
@@ -175,8 +176,8 @@ export function BookingWizard() {
 
         {step === "confirmed" && (
           <div className="flex flex-col items-center gap-3 py-6 text-center">
-            <span className="grid h-16 w-16 place-items-center rounded-full bg-brand/15 text-[2rem] text-brand">
-              ✓
+            <span className="grid h-16 w-16 place-items-center rounded-full bg-brand/15 text-brand">
+              <CheckIcon className="h-8 w-8" />
             </span>
             <h3 className="font-display text-[1.6rem] font-medium">Table booked</h3>
             <p className="max-w-[34ch] text-muted">
@@ -186,7 +187,7 @@ export function BookingWizard() {
             <button
               type="button"
               onClick={reset}
-              className="mt-3 cursor-pointer rounded-full border border-white/15 px-6 py-2.5 font-display text-[.9rem] text-cream transition-colors hover:bg-white/[.08]"
+              className="mt-3 cursor-pointer rounded-full border border-white/15 px-6 py-2.5 font-display text-[.9rem] text-cream transition-colors hover:bg-white/8"
             >
               Book another table
             </button>
@@ -201,7 +202,7 @@ export function BookingWizard() {
             <button
               type="button"
               onClick={goBack}
-              className="cursor-pointer rounded-full border border-white/15 px-6 py-2.5 font-display text-[.9rem] text-cream transition-colors hover:bg-white/[.08]"
+              className="cursor-pointer rounded-full border border-white/15 px-6 py-2.5 font-display text-[.9rem] text-cream transition-colors hover:bg-white/8"
             >
               Back
             </button>
@@ -265,7 +266,7 @@ function RoundBtn({
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className="grid h-12 w-12 cursor-pointer place-items-center rounded-full border border-white/15 bg-white/[.05] text-[1.6rem] leading-none text-cream transition-colors hover:border-brand/60 hover:bg-brand/10 disabled:cursor-not-allowed disabled:opacity-40"
+      className="grid h-12 w-12 cursor-pointer place-items-center rounded-full border border-white/15 bg-white/5 text-[1.6rem] leading-none text-cream transition-colors hover:border-brand/60 hover:bg-brand/10 disabled:cursor-not-allowed disabled:opacity-40"
     >
       {children}
     </button>
@@ -285,9 +286,9 @@ function TableMap({
   return (
     <div>
       <div className="mb-4 flex flex-wrap gap-x-4 gap-y-2 text-[.78rem] text-muted">
-        <Legend className="border-white/12 bg-white/[.05]">Available</Legend>
+        <Legend className="border-white/12 bg-white/5">Available</Legend>
         <Legend className="border-brand bg-brand/20">Selected</Legend>
-        <Legend className="border-white/8 bg-white/[.03] opacity-50">Booked</Legend>
+        <Legend className="border-white/8 bg-white/3 opacity-50">Booked</Legend>
       </div>
       <div className="grid grid-cols-3 gap-2.5 max-[380px]:gap-1.5">
         {columns.map(({ seats }) => (
@@ -358,7 +359,7 @@ function Legend({ children, className }: { children: React.ReactNode; className:
 
 function Summary({ party, table }: { party: number; table: Table | null }) {
   return (
-    <div className="rounded-[var(--radius-input)] border border-white/8 bg-white/[.04] px-5 py-4 [corner-shape:squircle]">
+    <div className="rounded-(--radius-input) border border-white/8 bg-white/4 px-5 py-4 [corner-shape:squircle]">
       <Row label="Party size" value={`${party} ${party === 1 ? "guest" : "guests"}`} />
       <Row label="Table" value={table ? `${table.label} · ${table.seats} seats` : "—"} />
     </div>

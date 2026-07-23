@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { CheckIcon } from "@/components/ui/icons";
 
 // Shared dummy payment control — used by both the cart checkout (Task 3) and the
 // $10 booking fee (Task 4). Simulates a gateway round-trip, then fires onSuccess
@@ -34,11 +35,16 @@ export function DummyPaymentButton({
 
   return (
     <Button onClick={pay} disabled={phase !== "idle"} className={className}>
-      {phase === "processing"
-        ? "Processing…"
-        : phase === "paid"
-          ? "Paid ✓"
-          : `${label} · $${amount.toFixed(2)}`}
+      {phase === "processing" ? (
+        "Processing…"
+      ) : phase === "paid" ? (
+        <span className="inline-flex items-center gap-1.5">
+          Paid
+          <CheckIcon className="h-4 w-4" />
+        </span>
+      ) : (
+        `${label} · $${amount.toFixed(2)}`
+      )}
     </Button>
   );
 }
