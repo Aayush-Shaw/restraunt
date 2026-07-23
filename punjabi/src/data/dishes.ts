@@ -90,3 +90,7 @@ export const SPICE_LABELS = ["Mild", "Medium", "Hot", "Extra hot"] as const;
 
 export const spiceLabel = (level: SpiceLevel): string =>
   SPICE_LABELS[level] ?? "Mild";
+
+// Prices are display strings ("$18.99"); the cart needs a number for subtotals.
+export const priceValue = (price: string): number =>
+  Number(price.replace(/[^0-9.]/g, "")) || 0;

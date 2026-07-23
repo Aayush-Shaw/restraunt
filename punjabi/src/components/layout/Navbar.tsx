@@ -80,12 +80,22 @@ export function Navbar() {
             })}
           </nav>
 
-          <Button
-            href="/contact"
-            className={`${pillH} px-5! max-[860px]:px-3.5! max-[860px]:text-[.92rem] max-[640px]:hidden`}
-          >
-            Book a Table
-          </Button>
+          {/* Auth actions replace the old "Book a Table" shortcut — both route to
+              the same /login screen, opened on the matching view. */}
+          <div className="flex items-center gap-2 max-[640px]:hidden">
+            <Link
+              href="/login"
+              className={`${pillH} inline-flex items-center rounded-full border border-white/15 px-5 font-display font-medium text-cream transition-colors hover:bg-white/[.07] max-[860px]:px-3.5 max-[860px]:text-[.92rem]`}
+            >
+              Login
+            </Link>
+            <Button
+              href="/login?mode=signup"
+              className={`${pillH} px-5! max-[860px]:px-3.5! max-[860px]:text-[.92rem]`}
+            >
+              Signup
+            </Button>
+          </div>
 
           {/* Hamburger → X (mobile only) */}
           <button
@@ -134,6 +144,14 @@ export function Navbar() {
               );
             })}
           </div>
+          {/* Mobile keeps Login only (Signup dropped to save space). */}
+          <Link
+            href="/login"
+            onClick={() => setOpen(false)}
+            className="mt-2 block rounded-full bg-brand py-2.5 text-center font-display font-medium text-white"
+          >
+            Login
+          </Link>
         </div>
       </div>
     </header>

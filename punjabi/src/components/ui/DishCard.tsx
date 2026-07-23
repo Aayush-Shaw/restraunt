@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Dish } from "@/data/dishes";
 import { spiceLabel } from "@/data/dishes";
+import { AddToCartButton } from "@/components/cart/AddToCartButton";
 
 const cap = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1);
 
@@ -79,6 +80,8 @@ export function DishCard({ dish, hidden = false }: { dish: Dish; hidden?: boolea
           )}
         </span>
       </div>
+
+      <AddToCartButton dish={dish} />
     </article>
   );
 }

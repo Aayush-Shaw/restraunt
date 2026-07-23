@@ -1,7 +1,7 @@
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { BookingForm } from "@/components/sections/BookingForm";
+import { BookingWizard } from "@/components/booking/BookingWizard";
 import { CONTACT } from "@/data/site";
 
 function AddressCard() {
@@ -54,7 +54,7 @@ export function BookSection({
           </p>
           <AddressCard />
         </div>
-        <BookingForm />
+        <BookingWizard />
       </Container>
       <MapEmbed />
     </Section>

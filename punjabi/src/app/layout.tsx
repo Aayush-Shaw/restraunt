@@ -6,6 +6,8 @@ import { Footer } from "@/components/layout/Footer";
 import { IconSpotlight } from "@/components/fx/IconSpotlight";
 import { HeadingWeight } from "@/components/fx/HeadingWeight";
 import { MotionProvider } from "@/components/fx/MotionProvider";
+import { CartProvider } from "@/components/cart/CartProvider";
+import { CartIsland } from "@/components/cart/CartIsland";
 
 const jost = Jost({ subsets: ["latin"], variable: "--font-jost", display: "swap" });
 const lora = Lora({
@@ -31,10 +33,13 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${jost.variable} ${lora.variable}`}>
       <body>
-        <IconSpotlight />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <CartProvider>
+          <IconSpotlight />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <CartIsland />
+        </CartProvider>
         <MotionProvider />
         <HeadingWeight />
       </body>
