@@ -5,12 +5,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/ui/Logo";
 import { Button } from "@/components/ui/Button";
+import { AuthOverlay } from "@/components/auth/AuthOverlay";
+import type { AuthMode } from "@/components/auth/AuthCard";
 import { NAV_LINKS } from "@/data/site";
 
 export function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  // null = closed. Auth opens as a dialog here rather than routing to /login.
+  const [authMode, setAuthMode] = useState<AuthMode | null>(null);
   const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -80,18 +84,20 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Auth actions replace the old "Book a Table" shortcut — both route to
-              the same /login screen, opened on the matching view. */}
-          <div className="flex items-center gap-1 max-[640px]:hidden">
-            <Link
-              href="/login"
-              className={`${pillH} ${glass} inline-flex items-center rounded-full border border-white/15 px-5 font-display font-medium text-cream transition-colors hover:bg-white/5 max-[860px]:px-3.5 max-[860px]:text-[.92rem]`}
+          {/* Auth actions — both open the dialog. Mobile keeps Login only and
+              sits it against the hamburger (ml-auto beats the row's
+              justify-between, which would otherwise strand it mid-row). */}
+          <div className="flex items-center gap-1 max-[640px]:ml-auto max-[640px]:mr-2">
+            <button
+              type="button"
+              onClick={() => setAuthMode("login")}
+              className={`${pillH} ${glass} inline-flex cursor-pointer items-center rounded-full border border-white/15 px-5 font-display font-medium text-cream transition-colors hover:bg-white/5 max-[860px]:px-3.5 max-[860px]:text-[.92rem]`}
             >
               Login
-            </Link>
+            </button>
             <Button
-              href="/login?mode=signup"
-              className={`${pillH} px-5! max-[860px]:px-3.5! max-[860px]:text-[.92rem]`}
+              onClick={() => setAuthMode("signup")}
+              className={`${pillH} px-5! max-[860px]:px-3.5! max-[860px]:text-[.92rem] max-[640px]:hidden`}
             >
               Signup
             </Button>
@@ -144,16 +150,12 @@ export function Navbar() {
               );
             })}
           </div>
-          {/* Mobile keeps Login only (Signup dropped to save space). */}
-          <Link
-            href="/login"
-            onClick={() => setOpen(false)}
-            className="mt-2 block rounded-full bg-brand py-2.5 text-center font-display font-medium text-white"
-          >
-            Login
-          </Link>
         </div>
       </div>
+
+      {authMode && (
+        <AuthOverlay initialMode={authMode} onClose={() => setAuthMode(null)} />
+      )}
     </header>
   );
 }

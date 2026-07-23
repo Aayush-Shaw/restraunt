@@ -27,7 +27,15 @@ function GoogleMark() {
   );
 }
 
-export function AuthCard({ initialMode }: { initialMode: AuthMode }) {
+// `onDone` is passed by AuthOverlay so the success state closes the dialog
+// instead of navigating home. The standalone /login page omits it.
+export function AuthCard({
+  initialMode,
+  onDone,
+}: {
+  initialMode: AuthMode;
+  onDone?: () => void;
+}) {
   const [mode, setMode] = useState<AuthMode>(initialMode);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [googleLoading, setGoogleLoading] = useState(false);
@@ -66,7 +74,7 @@ export function AuthCard({ initialMode }: { initialMode: AuthMode }) {
 
   if (welcome) {
     return (
-      <div className="w-full max-w-105 rounded-(--radius) border border-white/8 bg-surface/40 p-8 text-center [corner-shape:squircle]">
+      <div className="w-full max-w-105 rounded-(--radius) border border-white/10 bg-surface/40 p-8 text-center [corner-shape:squircle]">
         <span className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full bg-brand/15 text-brand">
           <CheckIcon className="h-7 w-7" />
         </span>
@@ -74,62 +82,79 @@ export function AuthCard({ initialMode }: { initialMode: AuthMode }) {
           {isSignup ? "Account created" : "Welcome back"}
         </h1>
         <p className="mt-2 text-muted">Signed in as {welcome}.</p>
-        <Button href="/" className="mt-6 w-full">
-          Back to home
-        </Button>
+        {onDone ? (
+          <Button onClick={onDone} className="mt-6 w-full">
+            Done
+          </Button>
+        ) : (
+          <Button href="/" className="mt-6 w-full">
+            Back to home
+          </Button>
+        )}
       </div>
     );
   }
 
   return (
-    <div className="w-full max-w-105 rounded-(--radius) border border-white/8 bg-surface/40 p-8 [corner-shape:squircle] max-[520px]:p-6">
-      <h1 className="font-display text-[1.9rem] font-medium">
-        {isSignup ? "Create account" : "Welcome back"}
-      </h1>
-      <p className="mt-1.5 text-[.95rem] text-muted">
-        {isSignup
-          ? "Join the table — reserve, order, come back for more."
-          : "Sign in to pick up where you left off."}
-      </p>
+    <div className="w-full max-w-105 rounded-(--radius) border border-white/10 bg-surface/10 shadow-2xl backdrop-blur-xl p-8 [corner-shape:squircle] max-[520px]:p-6 landscape:max-w-180">
+      {/* Landscape splits into two columns: the pitch and Google on the left,
+          the email form on the right. Portrait stays a single stacked column. */}
+      <div className="flex flex-col landscape:flex-row landscape:gap-7">
+        <div className="landscape:flex-1">
+          <h1 className="font-display text-[1.9rem] font-medium">
+            {isSignup ? "Create account" : "Welcome back"}
+          </h1>
+          <p className="mt-1.5 text-[.95rem] text-muted">
+            {isSignup
+              ? "Join the table — reserve, order, come back for more."
+              : "Sign in to pick up where you left off."}
+          </p>
 
-      <button
-        type="button"
-        onClick={onGoogle}
-        disabled={googleLoading}
-        className="mt-7 flex w-full cursor-pointer items-center justify-center gap-3 rounded-full border border-white/12 bg-white/4 py-3 font-display font-medium text-cream transition-colors hover:bg-white/8 disabled:opacity-60"
-      >
-        <GoogleMark />
-        {googleLoading ? "Connecting…" : "Continue with Google"}
-      </button>
+          <button
+            type="button"
+            onClick={onGoogle}
+            disabled={googleLoading}
+            className="mt-7 flex w-full cursor-pointer items-center justify-center gap-3 rounded-full border border-white/12 bg-white/4 py-3 font-display font-medium text-cream transition-colors hover:bg-white/8 disabled:opacity-60"
+          >
+            <GoogleMark />
+            {googleLoading ? "Connecting…" : "Continue with Google"}
+          </button>
 
-      <div className="my-6 flex items-center gap-3 text-[.8rem] text-muted">
-        <span className="h-px flex-1 bg-white/10" />
-        or
-        <span className="h-px flex-1 bg-white/10" />
-      </div>
+          {/* Portrait-only: in two columns the border between them separates. */}
+          <div className="my-6 flex items-center gap-3 text-[.8rem] text-muted landscape:hidden">
+            <span className="h-px flex-1 bg-white/10" />
+            or
+            <span className="h-px flex-1 bg-white/10" />
+          </div>
+        </div>
 
-      <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
-        {isSignup && (
-          <Field label="Name" error={errors.name}>
-            <input name="name" type="text" autoComplete="name" placeholder="Your name" className={fieldCls} />
+        <form
+          onSubmit={onSubmit}
+          noValidate
+          className="flex flex-col gap-4 landscape:flex-1 landscape:border-l landscape:border-white/8 landscape:pl-7"
+        >
+          {isSignup && (
+            <Field label="Name" error={errors.name}>
+              <input name="name" type="text" autoComplete="name" placeholder="Your name" className={fieldCls} />
+            </Field>
+          )}
+          <Field label="Email" error={errors.email}>
+            <input name="email" type="email" autoComplete="email" placeholder="you@example.com" className={fieldCls} />
           </Field>
-        )}
-        <Field label="Email" error={errors.email}>
-          <input name="email" type="email" autoComplete="email" placeholder="you@example.com" className={fieldCls} />
-        </Field>
-        <Field label="Password" error={errors.password}>
-          <input
-            name="password"
-            type="password"
-            autoComplete={isSignup ? "new-password" : "current-password"}
-            placeholder="••••••••"
-            className={fieldCls}
-          />
-        </Field>
-        <Button type="submit" className="mt-2 w-full">
-          {isSignup ? "Create account" : "Log in"}
-        </Button>
-      </form>
+          <Field label="Password" error={errors.password}>
+            <input
+              name="password"
+              type="password"
+              autoComplete={isSignup ? "new-password" : "current-password"}
+              placeholder="••••••••"
+              className={fieldCls}
+            />
+          </Field>
+          <Button type="submit" className="mt-2 w-full">
+            {isSignup ? "Create account" : "Log in"}
+          </Button>
+        </form>
+      </div>
 
       <p className="mt-6 text-center text-[.9rem] text-muted">
         {isSignup ? "Already have an account? " : "New here? "}

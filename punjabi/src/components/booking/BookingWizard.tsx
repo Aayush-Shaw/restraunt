@@ -14,8 +14,8 @@ import { MAX_PARTY, TABLES, type BookingStep, type Table } from "./tables";
 const fieldCls =
   "w-full rounded-[var(--radius-input)] border border-white/10 bg-white/[.06] px-4 py-[13px] text-cream [corner-shape:squircle] placeholder:text-muted focus:outline-2 focus:outline-offset-1 focus:outline-brand";
 
-// `!` is required: Button's base sets bg-brand, so a plain bg-purple-600 would
-// win or lose on Tailwind's class sort order rather than reliably.
+// `!` is required: Button's base already sets px-8/py-[14px], so a plain
+// override would win or lose on Tailwind's class sort order rather than reliably.
 const nextCls = "px-6! py-2.5!";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
