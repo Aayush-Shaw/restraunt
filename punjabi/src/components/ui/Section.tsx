@@ -1,7 +1,9 @@
 import type { ReactNode } from "react";
 
-// section { padding: 120px 0 } with the 1024px step-down to 96px.
-// page-first pages push the top padding to clear the fixed nav.
+// Vertical section rhythm: 80px, stepping down to 48px on mobile. The mobile
+// value must stay above the 48px [data-reveal] reveal offset so a section's last
+// row can't slide into the next section. Page-first pages push the top padding
+// to clear the fixed nav.
 export function Section({
   children,
   pageFirst = false,
