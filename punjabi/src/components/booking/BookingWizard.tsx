@@ -14,6 +14,10 @@ import { MAX_PARTY, TABLES, type BookingStep, type Table } from "./tables";
 const fieldCls =
   "w-full rounded-[var(--radius-input)] border border-white/10 bg-white/[.06] px-4 py-[13px] text-cream [corner-shape:squircle] placeholder:text-muted focus:outline-2 focus:outline-offset-1 focus:outline-brand";
 
+// `!` is required: Button's base sets bg-brand, so a plain bg-purple-600 would
+// win or lose on Tailwind's class sort order rather than reliably.
+const nextCls = "px-6! py-2.5!";
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const BOOKING_FEE = 10;
 
@@ -202,7 +206,7 @@ export function BookingWizard() {
             <button
               type="button"
               onClick={goBack}
-              className="cursor-pointer rounded-full border border-white/15 px-6 py-2.5 font-display text-[.9rem] text-cream transition-colors hover:bg-white/8"
+              className="cursor-pointer rounded-full border border-white/10 px-6 py-2.5 font-display text-[.9rem] text-cream transition-colors hover:bg-white/5"
             >
               Back
             </button>
@@ -211,14 +215,14 @@ export function BookingWizard() {
           )}
 
           {step === "party-size" && (
-            <Button onClick={() => setStep("table-map")}>Next</Button>
+            <Button className={nextCls} onClick={() => setStep("table-map")}>Next</Button>
           )}
           {step === "table-map" && (
-            <Button onClick={() => setStep("contact")} disabled={!selectedId}>
+            <Button className={nextCls} onClick={() => setStep("contact")} disabled={!selectedId}>
               Next
             </Button>
           )}
-          {step === "contact" && <Button onClick={tryAdvanceContact}>Next</Button>}
+          {step === "contact" && <Button className={nextCls} onClick={tryAdvanceContact}>Next</Button>}
         </div>
       )}
     </div>

@@ -3,7 +3,7 @@
 export const CONTACT = {
   name: "Indian Grill",
   address: "10132 104 St NW, Edmonton, AB",
-  hours: "Open daily 11:00 – 23:00",
+  hours: "11:00 - 23:00",
   // TODO(launch): +1 (780) 555-0123 is a placeholder. Address & hours are real.
   phoneDisplay: "+1 (780) 555-0123",
   phoneHref: "tel:+17805550123",

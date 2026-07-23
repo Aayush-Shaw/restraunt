@@ -45,7 +45,7 @@ export function Footer() {
           <p className={colText}>{CONTACT.hours}</p>
         </div>
 
-        <div className="max-[640px]:col-span-2">
+        <div className="max-[640px]:col-span-2 text-center">
           <h4 className={colHead}>Book</h4>
           <p className={colText}>Friday and Saturday nights go fast.</p>
           <Button href="/contact" className="mt-1.5 px-20">
