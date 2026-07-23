@@ -31,7 +31,7 @@ export function DishCard({ dish, hidden = false }: { dish: Dish; hidden?: boolea
       className="dish-card relative rounded-(--radius) [corner-shape:squircle] border border-white/8 bg-surface/30 p-6 max-[640px]:p-4"
     >
       <div className="relative mx-auto mb-6 aspect-square w-[min(240px,80%)] overflow-hidden rounded-full max-[640px]:mb-4 max-[640px]:w-[min(150px,72%)]">
-        <Image src={img} alt={name} fill sizes="240px" className="object-cover" />
+        <Image src={img} alt={name} fill sizes="(max-width:640px) 150px, 240px" className="object-cover" />
       </div>
       <h3 className="font-display text-[1.5rem] font-medium max-[640px]:text-balance max-[640px]:text-[1.05rem] max-[640px]:leading-tight">
         {name}

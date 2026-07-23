@@ -10,7 +10,8 @@ const IMAGES = [
 ];
 
 // Rotating duotone image stack (CSS handles the fade/tilt via .story-stack).
-export function StoryStack() {
+// `eager` is set only where this stack is the page's first image (/story).
+export function StoryStack({ eager = false }: { eager?: boolean }) {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
@@ -32,6 +33,7 @@ export function StoryStack() {
           fill
           sizes="(max-width:900px) 100vw, 45vw"
           className={i === active ? "is-active" : ""}
+          loading={eager && i === 0 ? "eager" : "lazy"}
         />
       ))}
     </div>

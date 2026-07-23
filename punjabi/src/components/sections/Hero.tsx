@@ -117,7 +117,17 @@ export function Hero() {
             className={`plate absolute w-[min(320px,58%)] ${plate.pos} max-[900px]:static max-[900px]:flex max-[900px]:w-[min(180px,30%)] max-[900px]:flex-col max-[900px]:items-center max-[640px]:w-[min(150px,44%)]`}
           >
             <div className="relative aspect-square w-full overflow-hidden rounded-full shadow-[0_40px_80px_rgba(0,0,0,.65)]">
-              <Image src={plate.src} alt={plate.alt} fill sizes="320px" className="object-cover" priority />
+              {/* Any of the three can be the LCP depending on viewport, so eager
+                  (no preload) per the Next 16 image docs — preloading all three
+                  just makes them starve each other. */}
+              <Image
+                src={plate.src}
+                alt={plate.alt}
+                fill
+                sizes="(max-width:640px) 150px, (max-width:900px) 180px, 320px"
+                className="object-cover"
+                loading="eager"
+              />
             </div>
             <figcaption className="absolute -left-5 top-3.5 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[rgba(85,85,85,.185)] px-4.5 py-2 font-display text-[.85rem] backdrop-blur-md max-[900px]:static max-[900px]:mt-3.5 max-[900px]:px-3 max-[900px]:py-1.5 max-[900px]:text-[.75rem]">
               <i className="inline-block h-2 w-2 rounded-full bg-brand" />

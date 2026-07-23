@@ -20,7 +20,7 @@ export function Story({
           <SectionHeading as={as} lead="From the" accent="Pind" />
           <p className="mt-4 md:mt-6 max-w-[46ch] text-[1.05rem] text-muted">{STORY_TEXT}</p>
         </div>
-        <StoryStack />
+        <StoryStack eager={pageFirst} />
       </Container>
     </Section>
   );
