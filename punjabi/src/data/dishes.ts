@@ -73,11 +73,13 @@ export const MENU_FILTERS: readonly ("all" | DishCategory)[] = [
 // Home "Signature Fire" grid: the original 6 hardcoded cards, in order.
 const HOME_DISH_NAMES: readonly string[] = [
   "Butter Chicken",
+  "Chicken Pakora",
   "Tandoori Chicken",
   "Amritsari Fish",
   "Rara Gosht",
   "Seekh Kebab",
   "Chicken Tikka",
+  "Gulab Jamun",
 ];
 
 export const HOME_DISHES: Dish[] = HOME_DISH_NAMES.map((name) => {

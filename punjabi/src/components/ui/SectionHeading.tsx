@@ -17,7 +17,7 @@ export function SectionHeading({
     <Tag
       id={id}
       data-reveal={reveal ? "" : undefined}
-      className="font-display text-[clamp(3rem,8vw,5.5rem)] leading-[1.02] font-medium uppercase text-balance"
+      className="font-display text-[clamp(4rem,9vw,8rem)] leading-[1.02] font-medium uppercase text-balance"
     >
       {lead} <span className="block text-brand">{accent}</span>
     </Tag>

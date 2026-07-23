@@ -15,10 +15,10 @@ export function Story({
 }) {
   return (
     <Section pageFirst={pageFirst}>
-      <Container className="grid grid-cols-[1.1fr_1fr] items-center gap-16 max-[900px]:grid-cols-1 max-[900px]:gap-10">
+      <Container className="grid grid-cols-[1fr_1fr] items-center gap-8 max-[900px]:grid-cols-1 max-[900px]:gap-6 max-[640px]:gap-4">
         <div data-reveal="">
           <SectionHeading as={as} lead="From the" accent="Pind" />
-          <p className="my-5 max-w-[46ch] text-[1.05rem] text-muted">{STORY_TEXT}</p>
+          <p className="mt-5 max-w-[46ch] text-[1.05rem] text-muted">{STORY_TEXT}</p>
         </div>
         <StoryStack />
       </Container>
