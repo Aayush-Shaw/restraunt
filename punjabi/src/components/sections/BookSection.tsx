@@ -46,7 +46,7 @@ export function BookSection({
   pageFirst?: boolean;
 }) {
   return (
-    <Section pageFirst={pageFirst} noPadBottom>
+    <Section id="book" pageFirst={pageFirst} noPadBottom>
       <Container className="grid grid-cols-[1.1fr_1fr] items-stretch gap-4 max-[900px]:grid-cols-1 max-[900px]:gap-8">
         <div className="flex min-w-0 flex-col">
           <SectionHeading as={as} lead="Book a" accent="Table" reveal />

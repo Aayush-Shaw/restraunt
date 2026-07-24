@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Button } from "@/components/ui/Button";
 import { CheckIcon } from "@/components/ui/icons";
+import { useBooking, type Contact } from "./BookingProvider";
 import { MAX_PARTY, TABLES, type BookingStep, type Table } from "./tables";
 
 // Multi-step reservation wizard — every step renders inside the one box, no
@@ -39,19 +40,25 @@ const STEP_LABEL: Record<BookingStep, string> = {
   confirmed: "Confirmed",
 };
 
-interface Contact {
-  name: string;
-  phone: string;
-  email: string;
-}
-
 export function BookingWizard() {
-  const [step, setStep] = useState<BookingStep>("party-size");
-  const [party, setParty] = useState(2);
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [contact, setContact] = useState<Contact>({ name: "", phone: "", email: "" });
+  // Booking state is shared (see BookingProvider) so Foodie drives the same wizard.
+  const {
+    step,
+    setStep,
+    party,
+    setParty,
+    date,
+    setDate,
+    time,
+    setTime,
+    selectedId,
+    setSelectedId,
+    contact,
+    setContact,
+    reset: resetBooking,
+    pendingOpen,
+    consumeOpen,
+  } = useBooking();
   const [touched, setTouched] = useState<Record<keyof Contact, boolean>>({
     name: false,
     phone: false,
@@ -108,14 +115,18 @@ export function BookingWizard() {
   };
 
   const reset = (): void => {
-    setStep("party-size");
-    setParty(2);
-    setDate("");
-    setTime("");
-    setSelectedId(null);
-    setContact({ name: "", phone: "", email: "" });
+    resetBooking();
     setTouched({ name: false, phone: false, email: false });
   };
+
+  // Foodie bumps pendingOpen to jump the user into the wizard; scroll into view
+  // once, then consume it so a later remount doesn't re-scroll. Prefill (e.g.
+  // party size) is already applied via the shared store by the time this runs.
+  useEffect(() => {
+    if (pendingOpen === 0) return;
+    rootRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    consumeOpen();
+  }, [pendingOpen, consumeOpen]);
 
   return (
     <div

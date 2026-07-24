@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { CheckIcon } from "@/components/ui/icons";
+import { CheckIcon, EyeIcon, EyeOffIcon } from "@/components/ui/icons";
 
 // Dummy auth — no real provider, no session. Client-side validation gives it a
 // polished feel, then it lands on a success state.
@@ -15,6 +15,10 @@ const fieldCls =
   "w-full rounded-[var(--radius-input)] border border-white/10 bg-white/[.06] px-4 py-[13px] text-cream [corner-shape:squircle] placeholder:text-muted focus:outline-2 focus:outline-offset-1 focus:outline-brand";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Red border once touched-and-wrong; gold once valid; neutral while pristine.
+const borderState = (value: string, err: string, touched: boolean): string =>
+  err ? (touched ? "border-brand!" : "") : value ? "border-gold/60!" : "";
 
 function GoogleMark() {
   return (
@@ -37,33 +41,38 @@ export function AuthCard({
   onDone?: () => void;
 }) {
   const [mode, setMode] = useState<AuthMode>(initialMode);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPw, setShowPw] = useState(false);
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [googleLoading, setGoogleLoading] = useState(false);
   const [welcome, setWelcome] = useState<string | null>(null);
 
   const isSignup = mode === "signup";
 
+  // Live validation — recomputed every render so feedback shows as the user types.
+  const errors: { name: string; email: string; password: string } = {
+    name: isSignup && name.trim().length < 2 ? "Please enter your name." : "",
+    email: EMAIL_RE.test(email) ? "" : "Enter a valid email address.",
+    password: password.length < 6 ? "At least 6 characters." : "",
+  };
+  const valid = !errors.email && !errors.password && !errors.name;
+  const markTouched = (k: string): void => setTouched((t) => ({ ...t, [k]: true }));
+
   const switchMode = (next: AuthMode): void => {
     setMode(next);
-    setErrors({});
+    setTouched({});
   };
 
   const onSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const name = String(data.get("name") ?? "").trim();
-    const email = String(data.get("email") ?? "").trim();
-    const password = String(data.get("password") ?? "");
-
-    const next: Record<string, string> = {};
-    if (isSignup && name.length < 2) next.name = "Please enter your name.";
-    if (!EMAIL_RE.test(email)) next.email = "Enter a valid email address.";
-    if (password.length < 6) next.password = "At least 6 characters.";
-    setErrors(next);
-    if (Object.keys(next).length > 0) return;
-
+    if (!valid) {
+      setTouched({ name: true, email: true, password: true }); // reveal every error
+      return;
+    }
     // TODO: wire to a real auth provider — this just shows a success state.
-    setWelcome(isSignup ? name : email);
+    setWelcome(isSignup ? name.trim() : email.trim());
   };
 
   const onGoogle = (): void => {
@@ -134,21 +143,58 @@ export function AuthCard({
           className="flex flex-col gap-4 landscape:flex-1 landscape:border-l landscape:border-white/8 landscape:pl-7"
         >
           {isSignup && (
-            <Field label="Name" error={errors.name}>
-              <input name="name" type="text" autoComplete="name" placeholder="Your name" className={fieldCls} />
+            <Field
+              label="Name"
+              error={touched.name ? errors.name : ""}
+              valid={!errors.name && name.length > 0}
+            >
+              <input
+                name="name"
+                type="text"
+                autoComplete="name"
+                placeholder="Your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                onBlur={() => markTouched("name")}
+                className={`${fieldCls} ${borderState(name, errors.name, !!touched.name)}`}
+              />
             </Field>
           )}
-          <Field label="Email" error={errors.email}>
-            <input name="email" type="email" autoComplete="email" placeholder="you@example.com" className={fieldCls} />
+          <Field
+            label="Email"
+            error={touched.email ? errors.email : ""}
+            valid={!errors.email && email.length > 0}
+          >
+            <input
+              name="email"
+              type="email"
+              autoComplete="email"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onBlur={() => markTouched("email")}
+              className={`${fieldCls} ${borderState(email, errors.email, !!touched.email)}`}
+            />
           </Field>
-          <Field label="Password" error={errors.password}>
+          <Field label="Password" error={touched.password ? errors.password : ""}>
             <input
               name="password"
-              type="password"
+              type={showPw ? "text" : "password"}
               autoComplete={isSignup ? "new-password" : "current-password"}
               placeholder="••••••••"
-              className={fieldCls}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onBlur={() => markTouched("password")}
+              className={`${fieldCls} pr-11! ${borderState(password, errors.password, !!touched.password)}`}
             />
+            <button
+              type="button"
+              onClick={() => setShowPw((v) => !v)}
+              aria-label={showPw ? "Hide password" : "Show password"}
+              className="absolute top-1/2 right-2.5 grid h-8 w-8 -translate-y-1/2 cursor-pointer place-items-center rounded-full text-muted transition-colors hover:text-cream"
+            >
+              {showPw ? <EyeOffIcon className="h-4.5 w-4.5" /> : <EyeIcon className="h-4.5 w-4.5" />}
+            </button>
           </Field>
           <Button type="submit" className="mt-2 w-full">
             {isSignup ? "Create account" : "Log in"}
@@ -179,10 +225,12 @@ export function AuthCard({
 function Field({
   label,
   error,
+  valid,
   children,
 }: {
   label: string;
   error?: string;
+  valid?: boolean;
   children: React.ReactNode;
 }) {
   return (
@@ -190,7 +238,12 @@ function Field({
       <span className="mb-1.5 block font-display text-[.82rem] tracking-[0.03em] text-muted">
         {label}
       </span>
-      {children}
+      <div className="relative">
+        {children}
+        {valid && (
+          <CheckIcon className="pointer-events-none absolute top-1/2 right-4 h-4 w-4 -translate-y-1/2 text-gold" />
+        )}
+      </div>
       {error && (
         <span className="mt-1 block text-[.8rem] text-brand" role="alert">
           {error}

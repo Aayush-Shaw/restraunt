@@ -15,7 +15,7 @@ export interface CartItem extends Dish {
   quantity: number;
 }
 
-interface CartContextValue {
+export interface CartContextValue {
   items: CartItem[];
   addItem: (dish: Dish) => void;
   incrementItem: (name: string) => void;

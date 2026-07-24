@@ -161,7 +161,7 @@ export function CartIsland() {
             // Landscape splits into two columns: items on the left, delivery +
             // payment on the right. Portrait stays a single stacked column.
             <div className="flex min-h-0 flex-1 flex-col landscape:flex-row">
-              <ul className="min-h-0 flex-1 divide-y divide-white/6 overflow-y-auto px-6 landscape:basis-1/2">
+              <ul className="min-h-0 flex-1 divide-y divide-white/6 overflow-y-auto overscroll-contain px-6 landscape:basis-1/2">
                 {items.map((item) => (
                   <li key={item.name} className="flex items-center gap-3 py-3.5">
                     <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full">
@@ -206,7 +206,7 @@ export function CartIsland() {
                 ))}
               </ul>
 
-              <div className="flex flex-col border-t border-white/8 px-6 py-4 landscape:basis-1/2 landscape:overflow-y-auto landscape:border-t-0 landscape:border-l">
+              <div className="flex flex-col overscroll-contain border-t border-white/8 px-6 py-4 landscape:basis-1/2 landscape:overflow-y-auto landscape:border-t-0 landscape:border-l">
                 <label className="mb-3 block">
                   <span className="mb-1.5 block font-display text-[.78rem] tracking-[0.04em] text-muted uppercase">
                     Deliver to

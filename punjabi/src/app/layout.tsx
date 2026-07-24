@@ -8,6 +8,8 @@ import { HeadingWeight } from "@/components/fx/HeadingWeight";
 import { MotionProvider } from "@/components/fx/MotionProvider";
 import { CartProvider } from "@/components/cart/CartProvider";
 import { CartIsland } from "@/components/cart/CartIsland";
+import { BookingProvider } from "@/components/booking/BookingProvider";
+import { Foodie } from "@/components/foodie/Foodie";
 
 const jost = Jost({ subsets: ["latin"], variable: "--font-jost", display: "swap" });
 const lora = Lora({
@@ -34,11 +36,14 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth" className={`${jost.variable} ${lora.variable}`}>
       <body>
         <CartProvider>
-          <IconSpotlight />
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-          <CartIsland />
+          <BookingProvider>
+            <IconSpotlight />
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            <CartIsland />
+            <Foodie />
+          </BookingProvider>
         </CartProvider>
         <MotionProvider />
         <HeadingWeight />

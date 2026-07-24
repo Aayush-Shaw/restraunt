@@ -32,7 +32,7 @@ export function AuthOverlay({
     >
       {/* Width tracks AuthCard's own max-w at both orientations, so the close
           button anchors to the card's edge instead of floating past it. */}
-      <div className="relative max-h-[92svh] w-[92vw] max-w-105 overflow-y-auto landscape:w-[94vw] landscape:max-w-180">
+      <div className="relative max-h-[92svh] w-[92vw] max-w-105 overflow-y-auto overscroll-contain landscape:w-[94vw] landscape:max-w-180">
         <button
           type="button"
           onClick={() => ref.current?.close()}
