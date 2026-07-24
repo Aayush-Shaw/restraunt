@@ -88,8 +88,9 @@ export function BagIcon({ className = "h-5 w-5" }: IconProps) {
       aria-hidden="true"
       className={className}
     >
-      <path d="M6 7h12l-.9 12.1a1 1 0 0 1-1 .9H7.9a1 1 0 0 1-1-.9L6 7Z" />
-      <path d="M9 7a3 3 0 0 1 6 0" />
+      <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+      <path d="M3 6h18" />
+      <path d="M16 10a4 4 0 0 1-8 0" />
     </svg>
   );
 }
