@@ -19,7 +19,7 @@ const phoneLink = (
 
 function FaqItem({ q, children }: { q: string; children: ReactNode }) {
   return (
-    <details className="group rounded-2xl border border-white/10 bg-white/3 px-6 [corner-shape:squircle]">
+    <details name="faq" className="faq-item group rounded-(--radius) border border-white/10 bg-white/3 px-6 [corner-shape:squircle]">
       <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4.5 font-display text-[1.1rem] font-medium focus-visible:rounded-md focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-gold [&::-webkit-details-marker]:hidden">
         {q}
         <span
@@ -40,7 +40,7 @@ export function Faq() {
     <Section aria-labelledby="faq-head">
       <Container>
         <SectionHeading id="faq-head" lead="Good to" accent="Know" reveal />
-        <div data-reveal="" className="mt-12 flex max-w-190 flex-col gap-3">
+        <div data-reveal="" className="mt-12 flex flex-col gap-3">
           <FaqItem q="How do I make a reservation?">
             {"Our online booking form is coming soon. For now, call us directly at "}
             {phoneLink}

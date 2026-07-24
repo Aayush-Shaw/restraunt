@@ -29,6 +29,33 @@
   }
 }
 
+/* Let block-size:auto animate to/from 0 (needed for the FAQ accordion below). */
+:root {
+  interpolate-size: allow-keywords;
+}
+
+/* ===== FAQ accordion: smooth open/close via native ::details-content =====
+   No JS — the browser keeps the content in flow during the close via
+   transition-behavior: allow-discrete on content-visibility. */
+.faq-item::details-content {
+  block-size: 0;
+  overflow: clip;
+  opacity: 0;
+  transition:
+    block-size 0.35s ease,
+    opacity 0.3s ease,
+    content-visibility 0.35s allow-discrete;
+}
+.faq-item[open]::details-content {
+  block-size: auto;
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-item::details-content {
+    transition: none;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }

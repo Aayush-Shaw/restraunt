@@ -3,13 +3,12 @@
 import { useRef, useState, type FormEvent } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Button } from "@/components/ui/Button";
-import { DummyPaymentButton } from "@/components/ui/DummyPaymentButton";
 import { CheckIcon } from "@/components/ui/icons";
 import { MAX_PARTY, TABLES, type BookingStep, type Table } from "./tables";
 
-// Multi-step reservation wizard — all four steps render inside the one box, no
-// route/modal changes. Everything is dummy: no real availability, no real fee.
-// TODO: wire table availability + the booking fee to a real backend.
+// Multi-step reservation wizard — every step renders inside the one box, no
+// route/modal changes. Availability is still mocked.
+// TODO: wire table availability to a real backend.
 
 const fieldCls =
   "w-full rounded-[var(--radius-input)] border border-white/10 bg-white/[.06] px-4 py-[13px] text-cream [corner-shape:squircle] placeholder:text-muted focus:outline-2 focus:outline-offset-1 focus:outline-brand";
@@ -19,14 +18,24 @@ const fieldCls =
 const nextCls = "px-6! py-2.5!";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const BOOKING_FEE = 10;
 
-const ORDER: BookingStep[] = ["party-size", "table-map", "contact", "payment"];
+// Canadian numbers are +1 (fixed) + 10 national digits, shown as (XXX) XXX-XXXX.
+const phoneDigits = (s: string): string => s.replace(/\D/g, "").slice(0, 10);
+function formatPhone(s: string): string {
+  const d = phoneDigits(s);
+  if (d.length <= 3) return d;
+  if (d.length <= 6) return `(${d.slice(0, 3)}) ${d.slice(3)}`;
+  return `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`;
+}
+// Red border once touched-and-wrong; gold once valid; neutral while pristine.
+const borderState = (value: string, err: string, touched: boolean): string =>
+  err ? (touched ? "border-brand!" : "") : value ? "border-gold/60!" : "";
+
+const ORDER: BookingStep[] = ["party-size", "table-map", "contact"];
 const STEP_LABEL: Record<BookingStep, string> = {
   "party-size": "Party size",
   "table-map": "Pick a table",
   contact: "Your details",
-  payment: "Booking fee",
   confirmed: "Confirmed",
 };
 
@@ -39,9 +48,24 @@ interface Contact {
 export function BookingWizard() {
   const [step, setStep] = useState<BookingStep>("party-size");
   const [party, setParty] = useState(2);
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [contact, setContact] = useState<Contact>({ name: "", phone: "", email: "" });
-  const [errors, setErrors] = useState<Partial<Contact>>({});
+  const [touched, setTouched] = useState<Record<keyof Contact, boolean>>({
+    name: false,
+    phone: false,
+    email: false,
+  });
+
+  // Live validation — recomputed every render so feedback shows as the user types.
+  const errors: Record<keyof Contact, string> = {
+    name: contact.name.trim().length < 2 ? "Please enter your name." : "",
+    phone: phoneDigits(contact.phone).length === 10 ? "" : "Enter a 10-digit phone number.",
+    email: EMAIL_RE.test(contact.email) ? "" : "Enter a valid email address.",
+  };
+  const contactValid = !errors.name && !errors.phone && !errors.email;
+  const markTouched = (k: keyof Contact): void => setTouched((t) => ({ ...t, [k]: true }));
 
   const rootRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -75,12 +99,8 @@ export function BookingWizard() {
 
   // Called by both the form's onSubmit (Enter key) and the footer Next button.
   const tryAdvanceContact = (): void => {
-    const next: Partial<Contact> = {};
-    if (contact.name.trim().length < 2) next.name = "Please enter your name.";
-    if (contact.phone.replace(/\D/g, "").length < 7) next.phone = "Enter a valid phone number.";
-    if (!EMAIL_RE.test(contact.email)) next.email = "Enter a valid email address.";
-    setErrors(next);
-    if (Object.keys(next).length === 0) setStep("payment");
+    if (contactValid) setStep("confirmed");
+    else setTouched({ name: true, phone: true, email: true }); // reveal every error
   };
   const onContactSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -90,9 +110,11 @@ export function BookingWizard() {
   const reset = (): void => {
     setStep("party-size");
     setParty(2);
+    setDate("");
+    setTime("");
     setSelectedId(null);
     setContact({ name: "", phone: "", email: "" });
-    setErrors({});
+    setTouched({ name: false, phone: false, email: false });
   };
 
   return (
@@ -121,7 +143,14 @@ export function BookingWizard() {
 
       <div ref={contentRef} className="flex-1">
         {step === "party-size" && (
-          <PartyStep value={party} onChange={setParty} />
+          <PartyStep
+            value={party}
+            onChange={setParty}
+            date={date}
+            time={time}
+            onDate={setDate}
+            onTime={setTime}
+          />
         )}
 
         {step === "table-map" && (
@@ -130,52 +159,59 @@ export function BookingWizard() {
 
         {step === "contact" && (
           <form onSubmit={onContactSubmit} noValidate className="flex flex-col gap-4">
-            <Field label="Name" error={errors.name}>
+            <Field
+              label="Name"
+              required
+              error={touched.name ? errors.name : ""}
+              valid={!errors.name && contact.name.length > 0}
+            >
               <input
                 type="text"
                 autoComplete="name"
                 placeholder="Your name"
                 value={contact.name}
                 onChange={(e) => setContact((c) => ({ ...c, name: e.target.value }))}
-                className={fieldCls}
+                onBlur={() => markTouched("name")}
+                className={`${fieldCls} ${borderState(contact.name, errors.name, touched.name)}`}
               />
             </Field>
-            <Field label="Phone" error={errors.phone}>
+            <Field
+              label="Phone"
+              required
+              error={touched.phone ? errors.phone : ""}
+              valid={!errors.phone}
+            >
+              <span className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-muted select-none">
+                +1
+              </span>
               <input
                 type="tel"
-                autoComplete="tel"
-                placeholder="Phone number"
+                inputMode="numeric"
+                autoComplete="tel-national"
+                placeholder="(555) 123-4567"
                 value={contact.phone}
-                onChange={(e) => setContact((c) => ({ ...c, phone: e.target.value }))}
-                className={fieldCls}
+                onChange={(e) => setContact((c) => ({ ...c, phone: formatPhone(e.target.value) }))}
+                onBlur={() => markTouched("phone")}
+                className={`${fieldCls} pl-11! ${borderState(contact.phone, errors.phone, touched.phone)}`}
               />
             </Field>
-            <Field label="Email" error={errors.email}>
+            <Field
+              label="Email"
+              required
+              error={touched.email ? errors.email : ""}
+              valid={!errors.email && contact.email.length > 0}
+            >
               <input
                 type="email"
                 autoComplete="email"
                 placeholder="you@example.com"
                 value={contact.email}
                 onChange={(e) => setContact((c) => ({ ...c, email: e.target.value }))}
-                className={fieldCls}
+                onBlur={() => markTouched("email")}
+                className={`${fieldCls} ${borderState(contact.email, errors.email, touched.email)}`}
               />
             </Field>
           </form>
-        )}
-
-        {step === "payment" && (
-          <div className="flex flex-col gap-5">
-            <Summary party={party} table={selected} />
-            <p className="text-[.95rem] text-muted">
-              A refundable ${BOOKING_FEE.toFixed(2)} holds your table.
-            </p>
-            <DummyPaymentButton
-              amount={BOOKING_FEE}
-              label="Pay booking fee"
-              onSuccess={() => setStep("confirmed")}
-              className="w-full"
-            />
-          </div>
         )}
 
         {step === "confirmed" && (
@@ -186,7 +222,8 @@ export function BookingWizard() {
             <h3 className="font-display text-[1.6rem] font-medium">Table booked</h3>
             <p className="max-w-[34ch] text-muted">
               {contact.name}, your table for {party} {party === 1 ? "guest" : "guests"} is
-              confirmed — {selected?.label} ({selected?.seats} seats). See you soon.
+              confirmed — {selected?.label} ({selected?.seats} seats) on {fmtWhen(date, time)}.
+              See you soon.
             </p>
             <button
               type="button"
@@ -199,8 +236,8 @@ export function BookingWizard() {
         )}
       </div>
 
-      {/* Footer nav — payment advances via its pay button; confirmed has none. */}
-      {step !== "confirmed" && step !== "payment" && (
+      {/* Footer nav — the confirmed screen has its own controls. */}
+      {step !== "confirmed" && (
         <div className="mt-7 flex items-center justify-between gap-3">
           {ORDER.indexOf(step) > 0 ? (
             <button
@@ -215,21 +252,41 @@ export function BookingWizard() {
           )}
 
           {step === "party-size" && (
-            <Button className={nextCls} onClick={() => setStep("table-map")}>Next</Button>
+            <Button className={nextCls} onClick={() => setStep("table-map")} disabled={!date || !time}>
+              Next
+            </Button>
           )}
           {step === "table-map" && (
             <Button className={nextCls} onClick={() => setStep("contact")} disabled={!selectedId}>
               Next
             </Button>
           )}
-          {step === "contact" && <Button className={nextCls} onClick={tryAdvanceContact}>Next</Button>}
+          {step === "contact" && (
+            <Button className={nextCls} onClick={tryAdvanceContact}>
+              Confirm booking
+            </Button>
+          )}
         </div>
       )}
     </div>
   );
 }
 
-function PartyStep({ value, onChange }: { value: number; onChange: (n: number) => void }) {
+function PartyStep({
+  value,
+  onChange,
+  date,
+  time,
+  onDate,
+  onTime,
+}: {
+  value: number;
+  onChange: (n: number) => void;
+  date: string;
+  time: string;
+  onDate: (v: string) => void;
+  onTime: (v: string) => void;
+}) {
   return (
     <div className="flex flex-col items-center gap-6 py-6">
       <p className="text-muted">How many guests?</p>
@@ -249,8 +306,43 @@ function PartyStep({ value, onChange }: { value: number; onChange: (n: number) =
         </RoundBtn>
       </div>
       <p className="text-[.85rem] text-muted">Tables seat up to {MAX_PARTY}.</p>
+
+      <div className="grid w-full max-w-sm grid-cols-2 gap-3 max-[380px]:grid-cols-1">
+        <Field label="Date" required>
+          <input
+            type="date"
+            min={localToday()}
+            value={date}
+            onChange={(e) => onDate(e.target.value)}
+            className={`${fieldCls} scheme-dark`}
+          />
+        </Field>
+        <Field label="Time" required>
+          <input
+            type="time"
+            value={time}
+            onChange={(e) => onTime(e.target.value)}
+            className={`${fieldCls} scheme-dark`}
+          />
+        </Field>
+      </div>
     </div>
   );
+}
+
+// Local (not UTC) YYYY-MM-DD so the date picker's min never blocks "today".
+const localToday = (): string => new Date().toLocaleDateString("en-CA");
+
+// "2026-07-25" + "19:30" → "Sat, Jul 25 · 7:30 PM". Falls back to raw if unset.
+function fmtWhen(date: string, time: string): string {
+  if (!date || !time) return "—";
+  const d = new Date(`${date}T${time}`);
+  if (Number.isNaN(d.getTime())) return `${date} ${time}`;
+  return `${d.toLocaleDateString(undefined, {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+  })} · ${d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })}`;
 }
 
 function RoundBtn({
@@ -361,39 +453,31 @@ function Legend({ children, className }: { children: React.ReactNode; className:
   );
 }
 
-function Summary({ party, table }: { party: number; table: Table | null }) {
-  return (
-    <div className="rounded-(--radius-input) border border-white/8 bg-white/4 px-5 py-4 [corner-shape:squircle]">
-      <Row label="Party size" value={`${party} ${party === 1 ? "guest" : "guests"}`} />
-      <Row label="Table" value={table ? `${table.label} · ${table.seats} seats` : "—"} />
-    </div>
-  );
-}
-
-function Row({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex items-center justify-between py-1">
-      <span className="text-muted">{label}</span>
-      <span className="font-display font-medium text-cream">{value}</span>
-    </div>
-  );
-}
-
 function Field({
   label,
+  required,
   error,
+  valid,
   children,
 }: {
   label: string;
+  required?: boolean;
   error?: string;
+  valid?: boolean;
   children: React.ReactNode;
 }) {
   return (
     <label className="block">
       <span className="mb-1.5 block font-display text-[.82rem] tracking-[0.03em] text-muted">
         {label}
+        {required && <span className="text-brand"> *</span>}
       </span>
-      {children}
+      <div className="relative">
+        {children}
+        {valid && (
+          <CheckIcon className="pointer-events-none absolute top-1/2 right-4 h-4 w-4 -translate-y-1/2 text-gold" />
+        )}
+      </div>
       {error && (
         <span className="mt-1 block text-[.8rem] text-brand" role="alert">
           {error}

@@ -6,7 +6,6 @@ export type BookingStep =
   | "party-size"
   | "table-map"
   | "contact"
-  | "payment"
   | "confirmed";
 
 export interface Table {
