@@ -119,7 +119,7 @@ export function CartIsland() {
   return (
     <div
       ref={rootRef}
-      className="fixed bottom-6 left-1/2 z-90 -translate-x-1/2 max-[640px]:bottom-4 max-[640px]:w-[92vw]"
+      className="fixed bottom-6 left-1/2 z-90 -translate-x-1/2 max-[640px]:bottom-4"
     >
       {expanded ? (
         <div
@@ -251,7 +251,7 @@ export function CartIsland() {
         <button
           type="button"
           onClick={() => setExpanded(true)}
-          className="flex cursor-pointer items-center gap-3 rounded-full border border-white/10 bg-brand px-6 py-3.5 font-display font-medium text-white shadow-2xl transition-transform hover:-translate-y-0.5 max-[640px]:w-full max-[640px]:justify-center"
+          className="flex cursor-pointer items-center gap-3 rounded-full border border-white/10 bg-brand px-6 py-3.5 font-display font-medium text-white shadow-2xl transition-transform hover:-translate-y-0.5"
         >
           <BagIcon className="h-4.5 w-4.5" />
           {hasItems && (

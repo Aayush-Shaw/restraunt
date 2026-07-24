@@ -157,12 +157,9 @@ export function Foodie() {
   return (
     <div
       ref={rootRef}
-      // On mobile the cart pill is a full-width bar at the bottom, so lift Foodie
-      // above it whenever the cart has items. Desktop keeps it in the corner (the
-      // pill is centered and narrow there — no collision).
-      className={`fixed right-6 bottom-6 z-90 max-[640px]:right-4 ${
-        cart.itemCount > 0 ? "max-[640px]:bottom-24" : "max-[640px]:bottom-4"
-      }`}
+      // Bottom-right corner. The cart pill is centered and content-width (both
+      // desktop and mobile), so it never collides with the launcher here.
+      className="fixed right-6 bottom-4 z-90 max-[640px]:right-4 max-[640px]:bottom-2"
     >
       {open ? (
         <div
