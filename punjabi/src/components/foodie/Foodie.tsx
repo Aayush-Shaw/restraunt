@@ -40,6 +40,7 @@ export function Foodie() {
   const rootRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
+  const prevH = useRef<number | null>(null);
   const idRef = useRef(0);
   const nextId = (): number => ++idRef.current;
 
@@ -118,15 +119,36 @@ export function Foodie() {
     { dependencies: [open], scope: rootRef },
   );
 
-  // New messages: slide the latest in and keep the list pinned to the bottom.
+  // New messages: smoothly grow the panel, slide the latest in, and keep the list
+  // pinned to the bottom.
   useGSAP(
     () => {
       const list = listRef.current;
-      if (!list) return;
-      const last = list.lastElementChild;
-      if (last && !reduceMotion()) {
-        gsap.from(last, { y: 10, opacity: 0, duration: 0.3, ease: "power2.out" });
+      const panel = panelRef.current;
+      if (!list || !panel) return;
+
+      if (!reduceMotion()) {
+        // The panel height is content-driven, so it snaps on each message. Measure
+        // the true new height (clear any in-flight grow first), then tween from the
+        // previous height up to it — it's bottom-anchored, so it expands upward.
+        // clearProps restores auto afterward so growth keeps tracking content.
+        gsap.killTweensOf(panel, "height");
+        panel.style.height = "";
+        const now = panel.offsetHeight;
+        const prev = prevH.current;
+        if (prev != null && now > prev) {
+          gsap.fromTo(
+            panel,
+            { height: prev },
+            { height: now, duration: 0.35, ease: "power2.out", clearProps: "height", overwrite: true },
+          );
+        }
+        prevH.current = now;
+
+        const last = list.lastElementChild;
+        if (last) gsap.from(last, { y: 10, opacity: 0, duration: 0.3, ease: "power2.out" });
       }
+
       list.scrollTop = list.scrollHeight;
     },
     { dependencies: [messages.length], scope: rootRef },
