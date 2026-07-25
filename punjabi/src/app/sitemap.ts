@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 
-// TODO(deploy): point at the production origin.
-const SITE = "https://aayush-shaw.github.io";
+const SITE = "https://punjabi-restraunt-canada-by-aayushshaw.vercel.app";
 const lastModified = new Date("2026-07-18");
 
 export default function sitemap(): MetadataRoute.Sitemap {

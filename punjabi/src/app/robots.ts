@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 
-// TODO(deploy): point host/sitemap at the production origin.
-const SITE = "https://aayush-shaw.github.io";
+const SITE = "https://punjabi-restraunt-canada-by-aayushshaw.vercel.app";
 
 export default function robots(): MetadataRoute.Robots {
   return {
