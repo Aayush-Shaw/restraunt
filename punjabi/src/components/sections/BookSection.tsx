@@ -32,7 +32,7 @@ function MapEmbed() {
         src="https://www.google.com/maps?q=EMPIRE+BANQUET+HALL,+4826+11+St+NE,+Calgary,+AB+T2E+2W7&ftid=0x537165a9fa68dff3:0xf208dd17989f34cf&output=embed"
         loading="lazy"
         title="Indian Grill location on Google Maps"
-        className="h-full w-full border-0 filter-[grayscale(1)_invert(.92)_contrast(.85)]"
+        className="h-full w-full border-0"
       />
     </div>
   );
