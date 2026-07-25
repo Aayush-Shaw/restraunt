@@ -20,7 +20,8 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://punjabi-restraunt-canada-by-aayushshaw.vercel.app"),
+  // metadataBase: new URL("https://punjabi-restraunt-canada-by-aayushshaw.vercel.app"),
+  metadataBase: new URL("https://indiangrill.vercel.app"),
   icons: {
     icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>",
   },

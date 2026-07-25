@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
-const SITE = "https://punjabi-restraunt-canada-by-aayushshaw.vercel.app";
+// const SITE = "https://punjabi-restraunt-canada-by-aayushshaw.vercel.app";
+const SITE = "https://indiangrill.vercel.app";
 const lastModified = new Date("2026-07-18");
 
 export default function sitemap(): MetadataRoute.Sitemap {

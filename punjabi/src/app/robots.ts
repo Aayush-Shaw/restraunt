@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
-const SITE = "https://punjabi-restraunt-canada-by-aayushshaw.vercel.app";
+// const SITE = "https://punjabi-restraunt-canada-by-aayushshaw.vercel.app";
+const SITE = "https://indiangrill.vercel.app";
 
 export default function robots(): MetadataRoute.Robots {
   return {
