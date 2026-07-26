@@ -17,7 +17,7 @@ export default async function LoginPage({
 }) {
   const { mode } = await searchParams;
   return (
-    <section className="grid min-h-svh place-items-center px-4 pt-[140px] pb-24">
+    <section className="grid min-h-svh place-items-center px-4 pt-35 pb-24">
       <AuthCard initialMode={mode === "signup" ? "signup" : "login"} />
     </section>
   );

@@ -11,5 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE}/contact`, lastModified, priority: 0.8 },
     { url: `${SITE}/story`, lastModified, priority: 0.7 },
     { url: `${SITE}/reviews`, lastModified, priority: 0.6 },
+    { url: `${SITE}/login`, lastModified, priority: 0.3 },
   ];
 }

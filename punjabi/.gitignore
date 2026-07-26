@@ -1,8 +1,8 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
+# ========================
+# Dependencies
+# ========================
+node_modules/
+.pnp
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -10,32 +10,121 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
+# ========================
+# Next.js Build Output
+# ========================
+.next/
+out/
+build/
+dist/
 
-# next.js
-/.next/
-/out/
+# ========================
+# Environment Variables
+# ========================
+# Never commit secrets — use .env.local for development overrides
+.env
+.env.*
+!.env.example
 
-# production
-/build
+# ========================
+# TypeScript
+# ========================
+*.tsbuildinfo
+next-env.d.ts
 
-# misc
-.DS_Store
-*.pem
+# ========================
+# Testing & Coverage
+# ========================
+coverage/
+.nyc_output/
+*.lcov
 
-# debug
+# ========================
+# Debug Logs
+# ========================
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# ========================
+# OS-Specific Files
+# ========================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
 
-# vercel
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+
+# ========================
+# IDE & Editor Files
+# ========================
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*.swn
+*.sublime-workspace
+*.sublime-project
+
+# ========================
+# Vercel
+# ========================
 .vercel
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# ========================
+# Security & Secrets
+# ========================
+*.pem
+*.key
+*.cert
+*.p12
+
+# ========================
+# Package Manager Locks
+# (Uncomment the ones you DON'T use to avoid conflicts)
+# ========================
+# yarn.lock
+# pnpm-lock.yaml
+# bun.lockb
+
+# ========================
+# Markdown (keep only README)
+# ========================
+*.md
+!README.md
+
+# ========================
+# AI Agent Config
+# ========================
+AGENTS.md
+CLAUDE.md
+.agents/
+.gemini/
+.cursor/
+.copilot/
+
+# ========================
+# Misc
+# ========================
+*.tgz
+*.log
+.cache/
+.turbo/
+.swc/
