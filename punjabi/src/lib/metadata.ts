@@ -16,7 +16,7 @@ export function buildMetadata({
   title,
   description,
   path = "",
-  ogImage = "/images/og-image.png",
+  ogImage = "/images/og-image.webp",
 }: PageMetaInput): Metadata {
   const url = path ? `${SITE}/${path}` : `${SITE}/`;
   const ogImageUrl = ogImage.startsWith("http") ? ogImage : `${SITE}${ogImage}`;
@@ -25,7 +25,7 @@ export function buildMetadata({
     width: 1200,
     height: 630,
     alt: title,
-    type: "image/png" as const,
+    type: "image/webp" as const,
   };
   return {
     title,
