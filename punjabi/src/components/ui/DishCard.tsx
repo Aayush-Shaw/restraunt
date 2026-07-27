@@ -21,7 +21,13 @@ function Flame({ on }: { on: boolean }) {
   );
 }
 
-export function DishCard({ dish, hidden = false }: { dish: Dish; hidden?: boolean }) {
+export function DishCard({
+  dish,
+  hidden = false,
+}: {
+  dish: Dish;
+  hidden?: boolean;
+}) {
   const { name, desc, price, img, spiceLevel, allergens } = dish;
   return (
     <article
@@ -31,7 +37,13 @@ export function DishCard({ dish, hidden = false }: { dish: Dish; hidden?: boolea
       className="dish-card relative rounded-(--radius) [corner-shape:squircle] border border-white/8 bg-surface/30 p-6 max-[640px]:p-4"
     >
       <div className="relative mx-auto mb-6 aspect-square w-[min(240px,80%)] overflow-hidden rounded-full max-[640px]:mb-4 max-[640px]:w-[min(150px,72%)]">
-        <Image src={img} alt={name} fill sizes="(max-width:640px) 150px, 240px" className="object-cover" />
+        <Image
+          src={img}
+          alt={name}
+          fill
+          sizes="(max-width:640px) 150px, 240px"
+          className="object-cover"
+        />
       </div>
       <h3 className="font-display text-[1.5rem] font-medium max-[640px]:text-balance max-[640px]:text-[1.05rem] max-[640px]:leading-tight">
         {name}
@@ -39,13 +51,12 @@ export function DishCard({ dish, hidden = false }: { dish: Dish; hidden?: boolea
       <p className="mt-2 mb-3 text-muted max-[640px]:mt-1.5 max-[640px]:mb-2.5 max-[640px]:line-clamp-2 max-[640px]:text-[.82rem] max-[640px]:leading-[1.45]">
         {desc}
       </p>
-      <span className="font-display font-medium tracking-[0.03em] text-[1.1rem] text-gold max-[640px]:text-base">
-        {price}
-      </span>
-
-      <div className="mt-3.5 flex flex-wrap items-center gap-x-3 gap-y-2 max-[640px]:mt-2.5 max-[640px]:gap-x-2.5 max-[640px]:gap-y-1.5">
+      <div className="flex items-center justify-between gap-3">
+        <span className="font-display font-medium tracking-[0.03em] text-[1.1rem] text-gold max-[640px]:text-base">
+          {price}
+        </span>
         <span
-          className="inline-flex gap-0.75"
+          className="inline-flex shrink-0 gap-0.75"
           role="img"
           aria-label={`Spice level: ${spiceLabel(spiceLevel)}`}
         >
@@ -53,32 +64,33 @@ export function DishCard({ dish, hidden = false }: { dish: Dish; hidden?: boolea
             <Flame key={i} on={i < spiceLevel} />
           ))}
         </span>
-        <span className="inline-flex flex-wrap gap-1.5">
-          {allergens.length > 0 ? (
-            <>
-              <span className="sr-only">Contains: {allergens.join(", ")}</span>
-              {allergens.map((a) => (
-                <span
-                  key={a}
-                  aria-hidden="true"
-                  className="whitespace-nowrap rounded-full border border-white/10 bg-white/6 px-2.5 py-1 font-display text-[.72rem] tracking-[0.04em] text-muted"
-                >
-                  {cap(a)}
-                </span>
-              ))}
-            </>
-          ) : (
-            <>
-              <span className="sr-only">No major allergens</span>
+      </div>
+
+      <div className="mt-3.5 flex flex-wrap gap-1.5 max-[640px]:mt-2.5">
+        {allergens.length > 0 ? (
+          <>
+            <span className="sr-only">Contains: {allergens.join(", ")}</span>
+            {allergens.map((a) => (
               <span
+                key={a}
                 aria-hidden="true"
-                className="whitespace-nowrap rounded-full border border-white/10 bg-white/6 px-2.5 py-1 font-display text-[.72rem] italic tracking-[0.04em] text-muted"
+                className="whitespace-nowrap rounded-full border border-white/10 bg-white/6 px-2.5 py-1 font-display text-[.72rem] tracking-[0.04em] text-muted"
               >
-                No major allergens
+                {cap(a)}
               </span>
-            </>
-          )}
-        </span>
+            ))}
+          </>
+        ) : (
+          <>
+            <span className="sr-only">No major allergens</span>
+            <span
+              aria-hidden="true"
+              className="whitespace-nowrap rounded-full border border-white/10 bg-white/6 px-2.5 py-1 font-display text-[.72rem] italic tracking-[0.04em] text-muted"
+            >
+              No major allergens
+            </span>
+          </>
+        )}
       </div>
 
       <AddToCartButton dish={dish} />

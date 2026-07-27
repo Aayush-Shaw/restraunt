@@ -34,7 +34,14 @@ export function MenuFilters() {
         gsap.fromTo(
           shown,
           { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.4, stagger: 0.04, ease: "power2.out", overwrite: true },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            stagger: 0.04,
+            ease: "power2.out",
+            overwrite: true,
+          },
         );
       }
       ScrollTrigger.refresh();
@@ -65,7 +72,7 @@ export function MenuFilters() {
 
       <div
         ref={gridRef}
-        className="mt-9 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-x-10 gap-y-14 max-[640px]:grid-cols-2 max-[640px]:gap-x-4 max-[640px]:gap-y-9"
+        className="mt-10 grid grid-cols-4 gap-8 max-[1439px]:grid-cols-3 max-[1439px]:[&>*:nth-child(n+7)]:hidden max-[900px]:gap-6 max-[900px]:grid-cols-2 max-[640px]:gap-4"
       >
         {DISHES.map((dish) => (
           <DishCard
