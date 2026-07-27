@@ -18,6 +18,11 @@ const fieldCls =
 // override would win or lose on Tailwind's class sort order rather than reliably.
 const nextCls = "px-6! py-2.5!";
 
+// Sits over an empty date/time input — iOS Safari draws no format hint of its
+// own. Same placement as the phone field's "+1" prefix.
+const hintCls =
+  "pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-muted select-none";
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Canadian numbers are +1 (fixed) + 10 national digits, shown as (XXX) XXX-XXXX.
@@ -325,16 +330,20 @@ function PartyStep({
             min={localToday()}
             value={date}
             onChange={(e) => onDate(e.target.value)}
+            data-empty={!date || undefined}
             className={`${fieldCls} scheme-dark`}
           />
+          {!date && <span className={hintCls}>Select date</span>}
         </Field>
         <Field label="Time" required>
           <input
             type="time"
             value={time}
             onChange={(e) => onTime(e.target.value)}
+            data-empty={!time || undefined}
             className={`${fieldCls} scheme-dark`}
           />
+          {!time && <span className={hintCls}>Select time</span>}
         </Field>
       </div>
     </div>
@@ -478,7 +487,9 @@ function Field({
   children: React.ReactNode;
 }) {
   return (
-    <label className="block">
+    // min-w-0: as a grid item the default auto floor lets a wide native control
+    // (iOS date/time) push its column past 1fr and overflow the wizard box.
+    <label className="block min-w-0">
       <span className="mb-1.5 block font-display text-[.82rem] tracking-[0.03em] text-muted">
         {label}
         {required && <span className="text-brand"> *</span>}

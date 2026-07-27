@@ -45,7 +45,6 @@ export const metadata: Metadata = {
   formatDetection: { telephone: true, address: true },
   icons: {
     icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>",
-    apple: "/images/og-image.png",
   },
   openGraph: {
     type: "website",
@@ -56,11 +55,11 @@ export const metadata: Metadata = {
     url: SITE_URL,
     images: [
       {
-        url: `${SITE_URL}/images/og-image.png`,
+        url: `${SITE_URL}/images/og-image.webp`,
         width: 1200,
         height: 630,
         alt: "Indian Grill — Charcoal-Fired Punjabi Kitchen",
-        type: "image/png",
+        type: "image/webp",
       },
     ],
   },
@@ -68,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Indian Grill — Charcoal-Fired Punjabi Kitchen, Edmonton",
     description: CONTACT.blurb,
-    images: [`${SITE_URL}/images/og-image.png`],
+    images: [`${SITE_URL}/images/og-image.webp`],
   },
   other: {
     "theme-color": "#0a0a0a",
@@ -83,7 +82,7 @@ const jsonLd = {
   description: CONTACT.blurb,
   url: SITE_URL,
   telephone: CONTACT.phoneDisplay,
-  image: `${SITE_URL}/images/og-image.png`,
+  image: `${SITE_URL}/images/og-image.webp`,
   address: {
     "@type": "PostalAddress",
     streetAddress: "10132 104 St NW",

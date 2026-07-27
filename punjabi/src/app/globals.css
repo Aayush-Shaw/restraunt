@@ -97,6 +97,27 @@ body {
   overflow-x: hidden;
 }
 
+/* ===== date/time inputs =====
+   WebKit sizes these to the native control, which is far wider than Blink's — in
+   a 1fr grid track (floor = min-content) that pushes the column past its share
+   and the fields spill out of the box on iOS. The reset lets width:100% win.
+   iOS also draws no mm/dd/yyyy hint when empty, so the wizard paints its own;
+   [data-empty] hides the engine's hint so Blink doesn't stack both. */
+input[type="date"],
+input[type="time"] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: 0;
+}
+input[type="date"]::-webkit-date-and-time-value,
+input[type="time"]::-webkit-date-and-time-value {
+  text-align: left;
+}
+input[type="date"][data-empty]::-webkit-datetime-edit,
+input[type="time"][data-empty]::-webkit-datetime-edit {
+  opacity: 0;
+}
+
 /* ===== food-icon spotlight texture (layers rendered by fx/IconSpotlight) ===== */
 .icon-layer {
   position: fixed;
